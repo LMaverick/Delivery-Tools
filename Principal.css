@@ -143,7 +143,7 @@ html, body{
 
 .neve{
     display: flex;
-    margin-left:50%;
+    margin-left:13%;
 
 
 }
@@ -154,14 +154,14 @@ html, body{
     border-radius: 50%;
     box-shadow: -100px 20px 5px #fff, 
     -100px 20px 5px #fff;
-    margin: 0 2vw;
+    margin: 0 3vw;
     animation: neves calc(100s / var(--i)) linear infinite;
 
 }
 
 @keyframes neves{
     0%{
-        transform: translateY(-10vh);
+        transform: translateY(-30vh);
 
     }
     100%{
@@ -178,6 +178,7 @@ html, body{
 }
 #container-promo{
     height: 100%;
+    min-width: 30vw;
     overflow: hidden;
 }
 
