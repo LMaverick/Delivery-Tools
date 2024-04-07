@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+
+/*
+pra usar as fontes
+font-family: 'Kalnia', serif;
+font-family: 'Work Sans', sans-serif;
+*/
+:root{
+    --cor1: #FFF;
+    --cor2: #E7E7E7;
+    --cor3: #623E2A;
+    --cor4: #91713C;
+
+    --fonte1: 'Kalnia', serif;
+    --fonte2: 'Work Sans', sans-serif;
+   
+}
