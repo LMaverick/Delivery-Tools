@@ -9,10 +9,196 @@ font-family: 'Work Sans', sans-serif;
 :root{
     --cor1: #FFF;
     --cor2: #E7E7E7;
-    --cor3: #623E2A;
-    --cor4: #91713C;
+    --corpreto: #000000;
+    --corvermelho: #FF3131;
+    --corlaranja: #F2AB1A;
 
     --fonte1: 'Kalnia', serif;
     --fonte2: 'Work Sans', sans-serif;
    
+}
+
+html, body{
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*=============================================*/
+
+#sec-top{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+
+    background-image: url(Files/capa.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+}
+
+#sec-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color:rgba(0, 0, 0, 0.4); /* Cor e opacidade do overlay */
+}
+
+
+.top{
+    color: var(--cor1);
+    text-align:center;
+
+    font-family: var(--fonte1);
+    color: var(--cor1);
+    
+    z-index: 1;
+    align-self: flex-start;
+    margin-left: 20px;
+}
+#top-tittle{
+    font-size: 90px;
+    font-weight: 200;
+    margin-top: auto;
+
+    position: relative;
+    cursor: default;
+
+    padding: 10px;
+}
+
+#top-tittle:hover {
+    animation: animacaoTexto 0.5s forwards; /* Inicia a animação ao passar o mouse */
+}
+
+@keyframes animacaoTexto {
+    from { 
+        opacity: 0; /* Começa com opacidade 0 (invisível) */
+        transform: translateY(20px); /* Desloca para baixo */
+    }
+    to {
+        opacity: 1; /* Termina com opacidade 1 (visível) */
+        transform: translateY(0); /* Retorna à posição original */
+    }
+}
+
+
+#top-subtxt{
+    font-size: 26px;
+    font-weight: 200;
+
+    background-color: rgba(255,255,255,0);
+    color:var(--cor1);
+    border: 2px solid rgba(255,255,255);
+    padding: 10px 40px;
+    border-radius: 4px;
+
+    cursor: pointer;
+    transition: background-color 0.7s ease;
+    transition: color 0.7s ease;
+
+    margin-bottom: 100px;
+    margin-left: 60px;
+}
+#top-subtxt:hover{
+    background-color: #fff;
+    color:var(--corpreto);
+    transition: margin 0.7s ease;
+    margin-top: 10px;
+    margin-bottom: 90px;
+
+}
+
+/*==========================================================*/
+#sec-promo{
+    height: 100%;
+    width: auto;
+    background-color: var(--corlaranja);
+
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+
+    position: relative; 
+    z-index: 2;
+    overflow: hidden;
+
+
+}
+
+.neve{
+display: flex;
+
+
+}
+.neve span{
+    min-width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: -100px 20px 5px #fff, 
+    -100px 20px 5px #fff;
+    margin: 0 1vw;
+    animation: neve calc(75s / var(--i)) linear infinite;
+
+}
+
+@keyframes neve{
+    0%{
+        transform: translateY(-10vh);
+
+    }
+    100%{
+        transform: translateY(100vh);
+
+    }
+    
+}
+
+
+.txts-promo{
+    flex-grow: 1; /* Permite que os textos ocupem todo o espaço restante */
+    text-align: right; /* Alinha os textos à direita */
+}
+#container-promo{
+    height: 50%;
+    overflow: hidden;
+}
+
+#img-promo {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+
+    
+}
+#img-promo:hover {
+    transform: scale(1.2);
+    transform-origin: center;
+    overflow: hidden;
+}
+    
+
+#tittle-promo{
+
+
+}
+
+#txt-promo{
+
 }
