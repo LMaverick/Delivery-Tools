@@ -97,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
         { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
         { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
         { nome: 'Produto 3', preco: 30.00, imagem: 'Files/suporteToalha.png' }
     ];
 
