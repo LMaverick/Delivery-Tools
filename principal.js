@@ -6,19 +6,42 @@ setTimeout(function() {
     document.querySelector('.loader').style.display = 'none';
     document.querySelector('.fake-layer').style.display = 'none'; // Oculta a camada falsa
 }, randomTime);
-
+//===================
 
 document.addEventListener('DOMContentLoaded', function() {
     const carrinhoIcon = document.querySelector('.carrinho-icon');
     const carrinhoTooltip = document.querySelector('.carrinho-tooltip');
+    const carrinhoItems = document.getElementById('carrinho-items');
 
-    // Evento de clique no ícone do carrinho para exibir/ocultar o tooltip
+    const botoesAdicionar = document.querySelectorAll('.prod-carrinho');
+    botoesAdicionar.forEach((botao, index) => {
+        botao.addEventListener('click', function() {
+            const produto = botao.parentElement;
+            const nome = produto.querySelector('.prod-txt').textContent;
+            const preco = produto.querySelector('.prod-preco').textContent;
+
+            // Cria um novo item no carrinho
+            const novoItem = document.createElement('div');
+            novoItem.classList.add('carrinho-item');
+            novoItem.innerHTML = `
+                <img src="${produto.querySelector('.prod-img img').src}" alt="">
+                <div>
+                    <p>${nome}</p>
+                    <p>${preco}</p>
+                </div>
+                <button class="remove-produto">Remover</button>
+            `;
+            carrinhoItems.appendChild(novoItem);
+
+            // Adiciona evento de remover
+            const removeBtn = novoItem.querySelector('.remove-produto');
+            removeBtn.addEventListener('click', function() {
+                carrinhoItems.removeChild(novoItem);
+            });
+        });
+    });
+
     carrinhoIcon.addEventListener('click', function() {
-        if (carrinhoTooltip.style.display === 'block') {
-            carrinhoTooltip.style.display = 'none';
-        } else {
-            carrinhoTooltip.style.display = 'block';
-            // Lógica para abrir o carrinho aqui (ainda não implementada)
-        }
+        carrinhoTooltip.classList.toggle('show');
     });
 });

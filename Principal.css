@@ -404,24 +404,88 @@ html, body{
 .carrinho-icon {
     width: 70px;
     height: 70px;
-    background-color: var(--corvermelho); /* Cor de fundo do botão */
-    border-radius: 50%; /* Para tornar o botão circular */
+    background-color: var(--corvermelho);
+    border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: background-color 0.3s ease; /* Transição de cor de fundo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    display: flex; /* Adiciona display flex */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
 .carrinho-icon:hover {
-    background-color: #db2727; /* Cor de fundo ao passar o mouse */
+    background-color: #db2727;
+}
+
+.carrinho-icon img {
+    width: 45px;
+    height: 45px;
 }
 
 .carrinho-tooltip {
     position: absolute;
-    bottom: calc(100% + 10px); /* Ajuste conforme necessário */
+    bottom: calc(100% + 10px);
     right: 0;
-    width: 200px; /* Largura do tooltip */
+    min-width: 400px; /* Defina a largura máxima do carrinho */
+    height: 80vh; /* Defina uma altura máxima para o carrinho */
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical */
     background-color: white;
     border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    display: none; /* Oculta inicialmente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 999; /* Ajuste o índice z conforme necessário */
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.carrinho-tooltip.show {
+    display: block;
+}
+
+.finalizar-compra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ccc; /* Linha divisória */
+    cursor: pointer;
+}
+
+#preco-total {
+    margin-right: 10px;
+}
+
+.carrinho-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.carrinho-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.carrinho-item-text {
+    flex-grow: 1;
+}
+
+.carrinho-item-price {
+    margin-right: 10px;
+}
+
+.carrinho-item-actions {
+    display: flex;
+    align-items: center;
+}
+
+.carrinho-item-actions button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
