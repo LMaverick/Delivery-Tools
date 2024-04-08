@@ -1,5 +1,8 @@
-window.addEventListener('load', function() {
-    // Quando a página é totalmente carregada, remove a tela de carregamento e mostra o conteúdo do site
+// Gera um número aleatório entre 1,5s e 3s (em milissegundos)
+var randomTime = Math.floor(Math.random() * (3000 - 1500 + 1)) + 1500;
+
+// Define o tempo de espera com o número aleatório
+setTimeout(function() {
     document.querySelector('.loader').style.display = 'none';
-    document.querySelector('.content').style.display = 'block';
-});
+    document.querySelector('.fake-layer').style.display = 'none'; // Oculta a camada falsa
+}, randomTime);

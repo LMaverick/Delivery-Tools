@@ -30,26 +30,35 @@ html, body{
     padding: 0;
 }
 /*=============================================*/
-
-.loader::after {
+.fake-layer {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff; /* Cor de fundo da tela de carregamento */
+    background-color: white;
+    z-index: 9999; 
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Cor de fundo semi-transparente */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Garante que a tela de carregamento esteja sempre na frente */
+    z-index: 9999; /* Z-index alto para garantir que esteja sempre na frente */
 }
 
 .spinner {
     width: 50px;
     height: 50px;
-    border: 5px solid #007bff; /* Cor do spinner */
+    border: 5px solid #FF3131; /* Cor do spinner */
+    border-top-color: transparent; /* Parte superior transparente para criar o efeito de rotação */
     border-radius: 50%;
-    border-top-color: transparent; /* Deixa uma parte do spinner transparente para criar o efeito de rotação */
     animation: spin 1s linear infinite; /* Animação de rotação */
 }
 
@@ -59,9 +68,6 @@ html, body{
     }
 }
 
-.content {
-    display: none; /* Oculta o conteúdo do site enquanto a tela de carregamento está ativa */
-}
 
 /*=============================================*/
 
