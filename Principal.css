@@ -18,6 +18,8 @@ font-family: 'Work Sans', sans-serif;
    
 }
 
+html{ scroll-behavior: smooth; }
+
 html, body{
     height: 100vh;
     width: 100vw;
@@ -163,6 +165,7 @@ html, body{
     margin-bottom: 120px;
 
 }
+
 
 /*==========================================================*/
 #sec-promo{
@@ -386,4 +389,39 @@ html, body{
 
 .prod-itens:hover .prod-carrinho {
     opacity: 1; /* Torna o botão visível ao passar o mouse */
+}
+
+/*==========================================================*/
+
+
+.carrinho-container {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    z-index: 999;
+}
+
+.carrinho-icon {
+    width: 70px;
+    height: 70px;
+    background-color: var(--corvermelho); /* Cor de fundo do botão */
+    border-radius: 50%; /* Para tornar o botão circular */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s ease; /* Transição de cor de fundo */
+}
+
+.carrinho-icon:hover {
+    background-color: #db2727; /* Cor de fundo ao passar o mouse */
+}
+
+.carrinho-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px); /* Ajuste conforme necessário */
+    right: 0;
+    width: 200px; /* Largura do tooltip */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: none; /* Oculta inicialmente */
 }
