@@ -69,38 +69,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Função para renderizar os itens do carrinho
-    function renderizarCarrinho() {
-        carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
-        carrinho.forEach(item => {
-            const carrinhoItem = document.createElement('div');
-            carrinhoItem.classList.add('carrinho-item');
-            carrinhoItem.innerHTML = `
-                <img src="${item.imagem}" alt="${item.nome}">
-                <div class="carrinho-item-text">
-                    <p>${item.nome}</p>
-                    <p>R$ ${item.preco.toFixed(2)}</p>
-                </div>
-                <div class="carrinho-item-actions">
-                    <button onclick="removerItem('${item.nome}')">-</button>
-                    <span>${item.quantidade}</span>
-                    <button onclick="adicionarItemCarrinho(${JSON.stringify(item)})">+</button>
-                </div>
-            `;
-            carrinhoItems.appendChild(carrinhoItem);
-        });
-    }
+function renderizarCarrinho() {
+    carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
+    carrinho.forEach(item => {
+        const carrinhoItem = document.createElement('div');
+        carrinhoItem.classList.add('carrinho-item');
+        carrinhoItem.innerHTML = `
+            <img src="${item.imagem}" alt="${item.nome}">
+            <div class="carrinho-item-text">
+                <p>${item.nome}</p>
+                <p>R$ ${item.preco.toFixed(2)}</p>
+            </div>
+            <div class="carrinho-item-actions">
+                <button class="remover-item">-</button>
+                <span>${item.quantidade}</span>
+                <button class="adicionar-item">+</button>
+            </div>
+        `;
+        carrinhoItems.appendChild(carrinhoItem);
+
+        // Adiciona eventos de clique para os botões de adicionar e remover itens
+        const btnRemover = carrinhoItem.querySelector('.remover-item');
+        btnRemover.addEventListener('click', () => removerItem(item.nome));
+
+        const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
+        btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item));
+    });
+}
 
     // Exemplo de produtos
     const produtos = [
         { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/suporteToalha.png' },
         { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 3', preco: 30.00, imagem: 'Files/suporteToalha.png' }
+        { nome: 'Produto 3', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 4', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 5', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 6', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 7', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 8', preco: 20.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 9', preco: 30.00, imagem: 'Files/suporteToalha.png' }
     ];
 
     // Evento de clique nos botões "Adicionar ao Carrinho"
