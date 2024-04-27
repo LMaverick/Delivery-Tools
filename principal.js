@@ -7,9 +7,6 @@ setTimeout(function() {
     document.querySelector('.fake-layer').style.display = 'none'; // Oculta a camada falsa
 }, randomTime);
 //===================
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const carrinhoIcon = document.querySelector('.carrinho-icon');
     const carrinhoTooltip = document.querySelector('.carrinho-tooltip');
@@ -69,89 +66,65 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Função para renderizar os itens do carrinho
-function renderizarCarrinho() {
-    carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
-    carrinho.forEach(item => {
-        const carrinhoItem = document.createElement('div');
-        carrinhoItem.classList.add('carrinho-item');
-        carrinhoItem.innerHTML = `
-            <img src="${item.imagem}" alt="${item.nome}">
-            <div class="carrinho-item-text">
-                <p>${item.nome}</p>
-                <p>R$ ${item.preco.toFixed(2)}</p>
-            </div>
-            <div class="carrinho-item-actions">
-                <button class="remover-item">-</button>
-                <span>${item.quantidade}</span>
-                <button class="adicionar-item">+</button>
-            </div>
-        `;
-        carrinhoItems.appendChild(carrinhoItem);
+    function renderizarCarrinho() {
+        carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
+        carrinho.forEach(item => {
+            const carrinhoItem = document.createElement('div');
+            carrinhoItem.classList.add('carrinho-item');
+            carrinhoItem.innerHTML = `
+                <img src="${item.imagem}" alt="${item.nome}">
+                <div class="carrinho-item-text">
+                    <p>${item.nome}</p>
+                    <p>R$ ${item.preco.toFixed(2)}</p>
+                </div>
+                <div class="carrinho-item-actions">
+                    <button class="remover-item">-</button>
+                    <span>${item.quantidade}</span>
+                    <button class="adicionar-item">+</button>
+                </div>
+            `;
+            carrinhoItems.appendChild(carrinhoItem);
 
-        // Adiciona eventos de clique para os botões de adicionar e remover itens
-        const btnRemover = carrinhoItem.querySelector('.remover-item');
-        btnRemover.addEventListener('click', () => removerItem(item.nome));
+            // Adiciona eventos de clique para os botões de adicionar e remover itens
+            const btnRemover = carrinhoItem.querySelector('.remover-item');
+            btnRemover.addEventListener('click', () => removerItem(item.nome));
 
-        const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
-        btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item));
-    });
-}
+            const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
+            btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item));
+        });
+    }
 
     // Exemplo de produtos
     const produtos = [
-        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 2', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 3', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 4', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 5', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 6', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 7', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 8', preco: 20.00, imagem: 'Files/suporteToalha.png' },
-        { nome: 'Produto 9', preco: 30.00, imagem: 'Files/suporteToalha.png' }
+        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png' },
+        { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' },
+        { nome: 'Produto 3', preco: 23.00, imagem: 'Files/chuveiro1.png' },
+        { nome: 'Produto 4', preco: 24.00, imagem: 'Files/Torneira.png' },
+        { nome: 'Produto 5', preco: 25.00, imagem: 'Files/Torneira.png' },
+        { nome: 'Produto 6', preco: 26.00, imagem: 'Files/Torneira.png' },
+        { nome: 'Produto 7', preco: 27.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 8', preco: 28.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 9', preco: 39.00, imagem: 'Files/suporteToalha.png' }
     ];
 
-    // Evento de clique nos botões "Adicionar ao Carrinho"
-    const botoesAdicionar = document.querySelectorAll('.prod-carrinho');
-    botoesAdicionar.forEach((botao, index) => {
-        botao.addEventListener('click', () => {
-            adicionarItemCarrinho(produtos[index]);
-        });
+    // Evento de clique nos elementos .prod-itens para redirecionar para a página de detalhes do item
+    const itens = document.querySelectorAll('.prod-itens');
+    itens.forEach((item, index) => {
+        item.addEventListener('click', () => redirecionarParaDetalhes(produtos[index]));
     });
+
+    // Função para redirecionar para a página de detalhes do item
+    function redirecionarParaDetalhes(item) {
+        // Armazene os dados do carrinho no sessionStorage
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+        // Redirecione para a página de detalhes do item com os parâmetros na URL
+        window.location.href = `detalhes_item.html?nome=${item.nome}&preco=${item.preco}&imagem=${item.imagem}`;
+    }
+
+    // Função para fechar a tela modal
+    function fecharModal() {
+        // Implemente aqui a lógica para fechar a tela modal
+        console.log('Fechar modal');
+        // Por enquanto, vamos apenas exibir uma mensagem no console
+    }
 });
-
-
-//=================================
-//outra tela quando clica no item
-
-
-
-const modal = document.getElementById('modal');
-const modalContent = document.getElementById('modal-content');
-
-// Função para abrir o modal e exibir informações detalhadas do item
-function abrirModal(item) {
-    // Preencha o conteúdo do modal com as informações do item
-    modalContent.innerHTML = `
-        <img src="${item.imagem}" alt="${item.nome}">
-        <h2>${item.nome}</h2>
-        <p>${item.descricao}</p>
-        <h3>Preço: R$ ${item.preco.toFixed(2)}</h3>
-        <h3>Outras imagens:</h3>
-        <div class="outras-imagens">
-            ${item.outrasImagens.map(imagem => `<img src="${imagem}" alt="${item.nome}">`).join('')}
-        </div>
-    `;
-
-    // Exiba o modal
-    modal.style.display = 'block';
-}
-
-// Evento de clique nos elementos .prod-itens
-const itens = document.querySelectorAll('.prod-itens');
-itens.forEach((item, index) => {
-    item.addEventListener('click', () => abrirModal(produtos[index]));
-});
-
-// Evento de clique no botão fechar do modal
-const btnFecharModal = document.getElementById('fechar-modal');
-btnFecharModal.addEventListener('click', () =>  modal.style.display = 'none');

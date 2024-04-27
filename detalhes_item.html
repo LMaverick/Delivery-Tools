@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Item</title>
+
+    <link rel="stylesheet" href="Principal.css">
+    <script src="principal.js"></script>
+</head>
+<body>
+    <h1>Detalhes do Item</h1>
+    <div id="detalhes-item"></div>
+
+
+
+
+
+     <!--CARRINHO -->
+     <div class="carrinho-container">
+        <div class="carrinho-icon"><img src="Files/carrinho-de-compras.png" alt=""></div>
+        <div class="carrinho-tooltip">
+            <div id="carrinho-items"></div>
+            <div class="finalizar-compra">
+                <span>Total:</span>
+                <span id="preco-total">R$ 0.00</span>
+                <button id="finalizar-compra-btn">Finalizar Compra</button>
+                
+            </div>
+
+    <script>
+        // Função para obter os parâmetros da URL
+        function getParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                nome: params.get('nome'),
+                preco: parseFloat(params.get('preco')),
+                imagem: params.get('imagem')
+            };
+        }
+
+        // Função para exibir os detalhes do item
+        function exibirDetalhes() {
+            const detalhesItem = document.getElementById('detalhes-item');
+            const params = getParams();
+            if (params.nome && params.preco && params.imagem) {
+                detalhesItem.innerHTML = `
+                    <img src="${params.imagem}" alt="${params.nome}">
+                    <p>${params.nome}</p>
+                    <p>R$ ${params.preco.toFixed(2)}</p>
+                `;
+            } else {
+                detalhesItem.innerHTML = '<p>Item não encontrado</p>';
+            }
+        }
+
+        // Exibir os detalhes do item ao carregar a página
+        exibirDetalhes();
+    </script>
+</body>
+</html>
