@@ -118,3 +118,40 @@ function renderizarCarrinho() {
         });
     });
 });
+
+
+//=================================
+//outra tela quando clica no item
+
+
+
+const modal = document.getElementById('modal');
+const modalContent = document.getElementById('modal-content');
+
+// Função para abrir o modal e exibir informações detalhadas do item
+function abrirModal(item) {
+    // Preencha o conteúdo do modal com as informações do item
+    modalContent.innerHTML = `
+        <img src="${item.imagem}" alt="${item.nome}">
+        <h2>${item.nome}</h2>
+        <p>${item.descricao}</p>
+        <h3>Preço: R$ ${item.preco.toFixed(2)}</h3>
+        <h3>Outras imagens:</h3>
+        <div class="outras-imagens">
+            ${item.outrasImagens.map(imagem => `<img src="${imagem}" alt="${item.nome}">`).join('')}
+        </div>
+    `;
+
+    // Exiba o modal
+    modal.style.display = 'block';
+}
+
+// Evento de clique nos elementos .prod-itens
+const itens = document.querySelectorAll('.prod-itens');
+itens.forEach((item, index) => {
+    item.addEventListener('click', () => abrirModal(produtos[index]));
+});
+
+// Evento de clique no botão fechar do modal
+const btnFecharModal = document.getElementById('fechar-modal');
+btnFecharModal.addEventListener('click', () =>  modal.style.display = 'none');
