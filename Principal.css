@@ -489,3 +489,29 @@ html, body{
     border: none;
     cursor: pointer;
 }
+
+#preco-total{
+    width: auto;
+    color: var(--corpreto);
+    
+    cursor: auto; 
+}
+
+#finalizar-compra-btn{
+
+    width: auto;
+    background-color: var(--corvermelho); 
+    color: var(--cor1);
+    border: none; 
+    padding: 8px 15px; 
+
+    cursor: pointer; 
+
+
+    font-size: 15px;
+    text-align: center;
+    font-weight: 600; 
+}
+
+/*==========================================================*/
+
