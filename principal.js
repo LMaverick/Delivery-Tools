@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Exemplo de produtos
     const produtos = [
-        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png' },
+        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado' },
         { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' },
         { nome: 'Produto 3', preco: 23.00, imagem: 'Files/chuveiro1.png' },
         { nome: 'Produto 4', preco: 24.00, imagem: 'Files/Torneira.png' },
