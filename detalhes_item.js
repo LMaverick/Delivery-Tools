@@ -15,14 +15,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ========================================
-
 document.addEventListener('DOMContentLoaded', function() {
+    // Recupera os dados do carrinho do sessionStorage
+    let carrinhoData = JSON.parse(sessionStorage.getItem('carrinho'));
+
+    // Verifica se há dados de carrinho no sessionStorage
+    let carrinho = carrinhoData !== null ? carrinhoData : [];
+
+    console.log("Carrinho atualizado:", carrinho);
+
     const carrinhoIcon = document.querySelector('.carrinho-icon');
     const carrinhoTooltip = document.querySelector('.carrinho-tooltip');
     const carrinhoItems = document.getElementById('carrinho-items');
     const finalizarCompraBtn = document.getElementById('finalizar-compra-btn');
     const precoTotal = document.getElementById('preco-total');
-    let carrinho = []; // Array para armazenar os itens no carrinho
 
     // Função para atualizar o preço total da compra
     function atualizarPrecoTotal() {
@@ -39,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
             carrinhoTooltip.style.display = 'none';
         } else {
             carrinhoTooltip.style.display = 'block';
-            // Lógica para abrir o carrinho aqui (ainda não implementada)
         }
     });
 
@@ -48,37 +53,24 @@ document.addEventListener('DOMContentLoaded', function() {
         // Lógica para finalizar a compra (ainda não implementada)
     });
 
- // Função para adicionar um item ao carrinho
-function adicionarItemCarrinho(nome, imagem, preco) {
-    // Recupera os dados do carrinho do sessionStorage
-let carrinhoData = JSON.parse(sessionStorage.getItem('carrinho'));
-
-// Verifica se há dados de carrinho no sessionStorage
-let carrinho = carrinhoData !== null ? carrinhoData : [];
-
-    // Procura se o item já está no carrinho
-    const index = carrinho.findIndex(item => item.nome === nome);
-
-    if (index !== -1) {
-        // Se o item já estiver no carrinho, incrementa a quantidade
-        carrinho[index].quantidade++;
-    } else {
-        // Se o item não estiver no carrinho, adiciona um novo objeto
-        carrinho.push({ nome, imagem, preco, quantidade: 1 });
+    // Função para adicionar um item ao carrinho
+    function adicionarItemCarrinho(nome, imagem, preco) {
+        console.log("Adicionando item ao carrinho:", nome);
+        const index = carrinho.findIndex(item => item.nome === nome);
+        if (index !== -1) {
+            carrinho[index].quantidade++;
+        } else {
+            carrinho.push({ nome, imagem, preco, quantidade: 1 });
+        }
+        console.log("Carrinho atualizado:", carrinho);
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+        renderizarCarrinho();
+        atualizarPrecoTotal();
     }
 
-    // Armazena o carrinho atualizado no sessionStorage
-    sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Atualiza a exibição do carrinho
-    renderizarCarrinho();
-    atualizarPrecoTotal();
-}
-
-
-    
     // Função para remover um item do carrinho
     function removerItem(nome) {
+        console.log("Removendo item do carrinho:", nome);
         const index = carrinho.findIndex(item => item.nome === nome);
         if (index !== -1) {
             if (carrinho[index].quantidade > 1) {
@@ -86,6 +78,8 @@ let carrinho = carrinhoData !== null ? carrinhoData : [];
             } else {
                 carrinho.splice(index, 1);
             }
+            console.log("Carrinho atualizado:", carrinho);
+            sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
             renderizarCarrinho();
             atualizarPrecoTotal();
         }
@@ -119,18 +113,17 @@ let carrinho = carrinhoData !== null ? carrinhoData : [];
             btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item.nome, item.imagem, item.preco));
         });
     }
-
- 
-
     // Evento de clique nos elementos .adicionar-carrinho para adicionar itens ao carrinho
-    const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
-    botoesAdicionar.forEach((botao, index) => {
+const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
+botoesAdicionar.forEach(botao => {
+    botao.addEventListener('click', function() {
         const produtoSelecionado = JSON.parse(sessionStorage.getItem('produtoSelecionado'));
-        botao.addEventListener('click', () => adicionarItemCarrinho(produtoSelecionado.nome, produtoSelecionado.imagem, produtoSelecionado.preco));
+        adicionarItemCarrinho(produtoSelecionado.nome, produtoSelecionado.imagem, produtoSelecionado.preco);
     });
+});
+
 
     // Renderiza o carrinho quando a página é carregada
     renderizarCarrinho();
     atualizarPrecoTotal();
 });
-

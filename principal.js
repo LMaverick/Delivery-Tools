@@ -7,13 +7,37 @@ setTimeout(function() {
     document.querySelector('.fake-layer').style.display = 'none'; // Oculta a camada falsa
 }, randomTime);
 //===================
+
+
+// Função para renderizar os itens do carrinho
+function renderizarCarrinho(carrinho) {
+    const carrinhoItems = document.getElementById('carrinho-items');
+    carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
+    carrinho.forEach(item => {
+        const carrinhoItem = document.createElement('div');
+        carrinhoItem.classList.add('carrinho-item');
+        carrinhoItem.innerHTML = `
+            <img src="${item.imagem}" alt="${item.nome}">
+            <div class="carrinho-item-text">
+                <p>${item.nome}</p>
+                <p>R$ ${item.preco.toFixed(2)}</p>
+            </div>
+            <div class="carrinho-item-actions">
+                <button class="remover-item" data-nome="${item.nome}">-</button>
+                <span>${item.quantidade}</span>
+                <button class="adicionar-item" data-nome="${item.nome}">+</button>
+            </div>
+        `;
+        carrinhoItems.appendChild(carrinhoItem);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const carrinhoIcon = document.querySelector('.carrinho-icon');
     const carrinhoTooltip = document.querySelector('.carrinho-tooltip');
-    const carrinhoItems = document.getElementById('carrinho-items');
     const finalizarCompraBtn = document.getElementById('finalizar-compra-btn');
     const precoTotal = document.getElementById('preco-total');
-    let carrinho = []; // Array para armazenar os itens no carrinho
+    let carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || []; // Array para armazenar os itens no carrinho
 
     // Função para atualizar o preço total da compra
     function atualizarPrecoTotal() {
@@ -47,11 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             carrinho.push({...item, quantidade: 1});
         }
-        renderizarCarrinho();
+        renderizarCarrinho(carrinho);
         atualizarPrecoTotal();
     }
-
-    
 
     // Função para remover um item do carrinho
     function removerItem(nome) {
@@ -62,90 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 carrinho.splice(index, 1);
             }
-            renderizarCarrinho();
+            renderizarCarrinho(carrinho);
             atualizarPrecoTotal();
         }
     }
 
-    // Função para renderizar os itens do carrinho
-    function renderizarCarrinho() {
-        carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
-        carrinho.forEach(item => {
-            const carrinhoItem = document.createElement('div');
-            carrinhoItem.classList.add('carrinho-item');
-            carrinhoItem.innerHTML = `
-                <img src="${item.imagem}" alt="${item.nome}">
-                <div class="carrinho-item-text">
-                    <p>${item.nome}</p>
-                    <p>R$ ${item.preco.toFixed(2)}</p>
-                </div>
-                <div class="carrinho-item-actions">
-                    <button class="remover-item">-</button>
-                    <span>${item.quantidade}</span>
-                    <button class="adicionar-item">+</button>
-                </div>
-            `;
-            carrinhoItems.appendChild(carrinhoItem);
-
-            // Adiciona eventos de clique para os botões de adicionar e remover itens
-            const btnRemover = carrinhoItem.querySelector('.remover-item');
-            btnRemover.addEventListener('click', () => removerItem(item.nome));
-
-            const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
-            btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item));
-        });
-    }    
-
-    // Produtos
-    const produtos = [
-        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'5',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-        
-        { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-        
-        { nome: 'Produto 3', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 4', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 5', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 6', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 7', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-       
-
-        { nome: 'Produto 8', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 9', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-    ];
-  // Evento de clique nos elementos .prod-itens para redirecionar para a página de detalhes do item
-  const itens = document.querySelectorAll('.prod-itens');
-  itens.forEach((item, index) => {
-      item.addEventListener('click', () => redirecionarParaDetalhes(produtos[index]));
-  });
-
-  // Função para redirecionar para a página de detalhes do item
-  function redirecionarParaDetalhes(item) {
-      // Armazene os dados do produto selecionado no sessionStorage
-sessionStorage.setItem('produtoSelecionado', JSON.stringify(item));
-// Redirecione para a página de detalhes do item com os parâmetros na URL
-window.location.href = `detalhes_item.html?nome=${item.nome}&preco=${item.preco}&imagem=${item.imagem}`;
-
-  }
-   
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Recupera os dados do carrinho do sessionStorage
-    let carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
-
-    // Função para atualizar o carrinho ao renderizar a página
-    function renderizarPagina() {
-        renderizarCarrinho();
-        atualizarPrecoTotal();
-    }
-
     // Renderiza o carrinho ao carregar a página
-    renderizarPagina();
+    renderizarCarrinho(carrinho);
 
     // Eventos de clique para os botões de adicionar e remover itens
     document.addEventListener('click', function(event) {
@@ -158,4 +103,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
