@@ -1,82 +1,136 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const miniaturas = document.querySelectorAll('.miniatura');
-    const imagemPrincipal = document.getElementById('imagemPrincipal');
+    const imagemPrincipal = document.getElementById('imagem');
 
     miniaturas.forEach(miniatura => {
-        miniatura.addEventListener('click', function() {
+        miniatura.addEventListener('mouseenter', function() {
             const novaImagem = this.dataset.imagem;
-            imagemPrincipal.src = novaImagem;
+            imagemPrincipal.style.opacity = '0'; // Reduz a opacidade para iniciar a transição
+            setTimeout(() => {
+                imagemPrincipal.src = novaImagem; // Altera a imagem após um pequeno atraso para a transição
+                imagemPrincipal.style.opacity = '1'; // Restaura a opacidade para mostrar a nova imagem
+            }, 90); // Tempo de espera para a transição (300ms neste exemplo)
         });
     });
 });
 
-// Função para atualizar os elementos HTML com os dados do produto
-function atualizarDetalhesProduto(produto) {
-    // Atualiza o nome do produto
-    document.getElementById('nome').innerText = produto.nome;
-    
-    // Atualiza a nota do produto (se existir)
-    const notaProduto = document.getElementById('nota');
-    if (produto.nota) {
-        const estrelas = notaProduto.querySelectorAll('.fa-star');
-        for (let i = 0; i < produto.nota; i++) {
-            estrelas[i].classList.add('checked');
-        }
-    } else {
-        notaProduto.innerHTML = ''; // Remove o elemento se a nota não estiver disponível
-    }
-    
-    // Atualiza a marca do produto
-    document.getElementById('marca').innerText = `Marca: ${produto.marca}`;
-    
-    // Atualiza o tamanho do produto
-    document.getElementById('tamanho').innerText = `Tamanho: ${produto.tamanho}`;
-    
-    // Atualiza o material do produto
-    document.getElementById('material').innerText = `Material: ${produto.material}`;
-    
-    // Atualiza a descrição do produto
-    document.getElementById('sobre').innerText = `Sobre: ${produto.sobre}`;
-    
-    // Atualiza a imagem principal do produto
-    document.getElementById('imagemPrincipal').src = produto.imagem;
-    
-    // Atualiza as miniaturas do produto (se existirem)
-    const miniaturas = document.querySelectorAll('.miniatura');
-    for (let i = 0; i < miniaturas.length; i++) {
-        const dataImagem = miniaturas[i].getAttribute('data-imagem');
-        if (produto[`imagem${i + 2}`]) {
-            miniaturas[i].src = produto[`imagem${i + 2}`];
-            miniaturas[i].setAttribute('data-imagem', produto[`imagem${i + 2}`]);
-        }
-    }
-}
+// ========================================
 
-// Função para obter os parâmetros da URL
-function getParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        nome: params.get('nome'),
-        preco: parseFloat(params.get('preco')),
-        imagem: params.get('imagem')
-    };
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const carrinhoIcon = document.querySelector('.carrinho-icon');
+    const carrinhoTooltip = document.querySelector('.carrinho-tooltip');
+    const carrinhoItems = document.getElementById('carrinho-items');
+    const finalizarCompraBtn = document.getElementById('finalizar-compra-btn');
+    const precoTotal = document.getElementById('preco-total');
+    let carrinho = []; // Array para armazenar os itens no carrinho
 
-// Função para exibir os detalhes do item
-function exibirDetalhes() {
-    const params = getParams();
-    if (params.nome && params.preco && params.imagem) {
-        const produto = produtos.find(produto => produto.nome === params.nome);
-        if (produto) {
-            atualizarDetalhesProduto(produto);
+    // Função para atualizar o preço total da compra
+    function atualizarPrecoTotal() {
+        let total = 0;
+        carrinho.forEach(item => {
+            total += item.preco * item.quantidade;
+        });
+        precoTotal.textContent = `R$ ${total.toFixed(2)}`;
+    }
+
+    // Evento de clique no ícone do carrinho para exibir/ocultar o tooltip
+    carrinhoIcon.addEventListener('click', function() {
+        if (carrinhoTooltip.style.display === 'block') {
+            carrinhoTooltip.style.display = 'none';
         } else {
-            document.getElementById('nome').innerText = 'Item não encontrado';
+            carrinhoTooltip.style.display = 'block';
+            // Lógica para abrir o carrinho aqui (ainda não implementada)
         }
+    });
+
+    // Adicionar evento de clique para o botão "Finalizar Compra"
+    finalizarCompraBtn.addEventListener('click', function() {
+        // Lógica para finalizar a compra (ainda não implementada)
+    });
+
+ // Função para adicionar um item ao carrinho
+function adicionarItemCarrinho(nome, imagem, preco) {
+    // Recupera os dados do carrinho do sessionStorage
+let carrinhoData = JSON.parse(sessionStorage.getItem('carrinho'));
+
+// Verifica se há dados de carrinho no sessionStorage
+let carrinho = carrinhoData !== null ? carrinhoData : [];
+
+    // Procura se o item já está no carrinho
+    const index = carrinho.findIndex(item => item.nome === nome);
+
+    if (index !== -1) {
+        // Se o item já estiver no carrinho, incrementa a quantidade
+        carrinho[index].quantidade++;
     } else {
-        document.getElementById('nome').innerText = 'Parâmetros inválidos';
+        // Se o item não estiver no carrinho, adiciona um novo objeto
+        carrinho.push({ nome, imagem, preco, quantidade: 1 });
     }
+
+    // Armazena o carrinho atualizado no sessionStorage
+    sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualiza a exibição do carrinho
+    renderizarCarrinho();
+    atualizarPrecoTotal();
 }
 
-// Exibir os detalhes do item ao carregar a página
-exibirDetalhes();
+
+    
+    // Função para remover um item do carrinho
+    function removerItem(nome) {
+        const index = carrinho.findIndex(item => item.nome === nome);
+        if (index !== -1) {
+            if (carrinho[index].quantidade > 1) {
+                carrinho[index].quantidade--;
+            } else {
+                carrinho.splice(index, 1);
+            }
+            renderizarCarrinho();
+            atualizarPrecoTotal();
+        }
+    }
+
+    // Função para renderizar os itens do carrinho
+    function renderizarCarrinho() {
+        carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
+        carrinho.forEach(item => {
+            const carrinhoItem = document.createElement('div');
+            carrinhoItem.classList.add('carrinho-item');
+            carrinhoItem.innerHTML = `
+                <img src="${item.imagem}" alt="${item.nome}">
+                <div class="carrinho-item-text">
+                    <p>${item.nome}</p>
+                    <p>R$ ${item.preco.toFixed(2)}</p>
+                </div>
+                <div class="carrinho-item-actions">
+                    <button class="remover-item">-</button>
+                    <span>${item.quantidade}</span>
+                    <button class="adicionar-item">+</button>
+                </div>
+            `;
+            carrinhoItems.appendChild(carrinhoItem);
+
+            // Adiciona eventos de clique para os botões de adicionar e remover itens
+            const btnRemover = carrinhoItem.querySelector('.remover-item');
+            btnRemover.addEventListener('click', () => removerItem(item.nome));
+
+            const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
+            btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item.nome, item.imagem, item.preco));
+        });
+    }
+
+ 
+
+    // Evento de clique nos elementos .adicionar-carrinho para adicionar itens ao carrinho
+    const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
+    botoesAdicionar.forEach((botao, index) => {
+        const produtoSelecionado = JSON.parse(sessionStorage.getItem('produtoSelecionado'));
+        botao.addEventListener('click', () => adicionarItemCarrinho(produtoSelecionado.nome, produtoSelecionado.imagem, produtoSelecionado.preco));
+    });
+
+    // Renderiza o carrinho quando a página é carregada
+    renderizarCarrinho();
+    atualizarPrecoTotal();
+});
+

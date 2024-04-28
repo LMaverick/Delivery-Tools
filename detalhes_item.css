@@ -68,7 +68,7 @@
     color: var(--corlaranja);
 }
 
-.adicionar-carrinho {
+.adicionar-carrinho, .voltar {
     background-color: var(--corlaranja); 
     color: var(--cor1); 
     padding: 10px 20px;
@@ -79,4 +79,8 @@
 
 .adicionar-carrinho:hover {
     background-color: #b47f14;
+}
+
+#imagem {
+    transition: opacity 0.3s ease; /* Adiciona uma transição suave na mudança de opacidade */
 }

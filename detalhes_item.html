@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="Principal.css">
     <link rel="stylesheet" href="detalhes_item.css">
-    <script src="principal.js"></script>
+
     <script src="detalhes_item.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -18,15 +18,19 @@
 
     <div class="container">
         <div class="ld_esq">
+            <a href="index.html"><button class="voltar">Voltar</button></a>
             <div class="container2">
-                <div class="imagem-principal" id="imagem">
-                    <img src="Files/chuveiro1.png" alt="Imagem Principal" id="imagemPrincipal">
+                <div class="imagem-principal" >
+                    <img src="Files/chuveiro1.png" alt="Imagem Principal" id="imagem">
                 </div>
                 <div class="miniaturas">
-                    <img src="Files/chuveiro1.png" alt="Miniatura 1" class="miniatura" data-imagem="Files/chuveiro1.png" id="imagem2">
-                 <img src="Files/suporteToalha.png" alt="Miniatura 2" class="miniatura" data-imagem="Files/suporteToalha.png" id="imagem3">
-                    <img src="Files/Torneira.png" alt="Miniatura 3" class="miniatura" data-imagem="Files/Torneira.png">
-                    <img src="Files/promo.jpg" alt="Miniatura 4" class="miniatura" data-imagem="Files/promo.jpg" id="imagem4">
+                    <img src="Files/chuveiro1.png" alt="Miniatura 1" class="miniatura" data-imagem="" id="imagem1">
+
+                     <img src="Files/suporteToalha.png" alt="Miniatura 2" class="miniatura" data-imagem="" id="imagem2">
+
+                    <img src="Files/Torneira.png" alt="Miniatura 3" class="miniatura" data-imagem="" id="imagem3">
+
+                    <img src="Files/promo.jpg" alt="Miniatura 4" class="miniatura" data-imagem="" id="imagem4">
                 </div>
             </div>
         </div>
@@ -49,17 +53,11 @@
                 <p id="tamanha">Tamanho: Tamanho do Produto</p>
                 <p id="material">Material: Material do Produto</p>
                 <p id="sobre">Sobre: Descrição básica do Produto</p>
+                
             </div>
         </div>
+        
     </div>
-
-
-
-
-
-
-    <h1>Detalhes do Item</h1>
-    <div id="detalhes-item"></div>
 
 
 
@@ -76,6 +74,59 @@
                 <button id="finalizar-compra-btn">Finalizar Compra</button>
                 
             </div>
+
+
+
+
+
+
+    <script>
+        
+document.addEventListener('DOMContentLoaded', function() {
+    // Recuperar os dados do produto do sessionStorage
+    const produtoSelecionado = JSON.parse(sessionStorage.getItem('produtoSelecionado'));
+
+    // Atualizar os elementos HTML com os dados do produto
+    document.getElementById('imagem').innerHTML = `<img src="${produtoSelecionado.imagem}" alt="Imagem Principal">`;
+    document.getElementById('imagem2').setAttribute('src', produtoSelecionado.imagem2);
+    document.getElementById('imagem3').setAttribute('src', produtoSelecionado.imagem3);
+    document.getElementById('imagem4').setAttribute('src', produtoSelecionado.imagem4);
+    
+    document.getElementById('imagem1').setAttribute('data-imagem', produtoSelecionado.imagem);
+    document.getElementById('imagem2').setAttribute('data-imagem', produtoSelecionado.imagem2);
+    document.getElementById('imagem3').setAttribute('data-imagem', produtoSelecionado.imagem3);
+    document.getElementById('imagem4').setAttribute('data-imagem', produtoSelecionado.imagem4);
+
+    document.getElementById('nome').textContent = produtoSelecionado.nome;
+    document.getElementById('marca').textContent = produtoSelecionado.marca;
+    document.getElementById('nota').innerHTML = ''; // Limpar o conteúdo anterior
+    // Adicionar estrelas representando a nota do produto
+    for (let i = 0; i < produtoSelecionado.nota; i++) {
+        document.getElementById('nota').innerHTML += '<span class="fa fa-star checked"></span>';
+    }
+    // Adicione estrelas vazias para completar 5 estrelas
+    for (let i = produtoSelecionado.nota; i < 5; i++) {
+        document.getElementById('nota').innerHTML += '<span class="fa fa-star"></span>';
+    }
+    document.getElementById('tamanha').textContent = `Tamanho: ${produtoSelecionado.tamanho}`;
+    document.getElementById('material').textContent = `Material: ${produtoSelecionado.material}`;
+    document.getElementById('sobre').textContent = `Sobre: ${produtoSelecionado.sobre}`;
+
+    // Adicione um evento de clique ao botão "Adicionar ao Carrinho"
+    document.querySelector('.adicionar-carrinho').addEventListener('click', function() {
+        // Implemente a lógica para adicionar o produto ao carrinho (ainda não implementada)
+        console.log('Adicionar ao carrinho:', produtoSelecionado);
+    });
+});
+
+
+
+    </script>
+
+
+
+    
+
 
 
 </body>

@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
         atualizarPrecoTotal();
     }
 
+    
+
     // Função para remover um item do carrinho
     function removerItem(nome) {
         const index = carrinho.findIndex(item => item.nome === nome);
@@ -92,48 +94,68 @@ document.addEventListener('DOMContentLoaded', function() {
             const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
             btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item));
         });
-    }
+    }    
 
-    // Exemplo de produtos
+    // Produtos
     const produtos = [
-        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/chuveiro1.png', imagem3:'Files/chuveiro1.png', imagem4:'Files/chuveiro1.png'},
+        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'5',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
         
-        { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/chuveiro1.png', imagem3:'Files/chuveiro1.png', imagem4:'Files/chuveiro1.png'},
+        { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
         
-        { nome: 'Produto 3', preco: 23.00, imagem: 'Files/chuveiro1.png', nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/chuveiro1.png', imagem3:'Files/chuveiro1.png', imagem4:'Files/chuveiro1.png' },
-        
-        { nome: 'Produto 4', preco: 24.00, imagem: 'Files/Torneira.png' },
+        { nome: 'Produto 3', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 5', preco: 25.00, imagem: 'Files/Torneira.png' },
+        { nome: 'Produto 4', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 6', preco: 26.00, imagem: 'Files/Torneira.png' },
+        { nome: 'Produto 5', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 7', preco: 27.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 6', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 8', preco: 28.00, imagem: 'Files/suporteToalha.png' },
+        { nome: 'Produto 7', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+       
 
-        { nome: 'Produto 9', preco: 39.00, imagem: 'Files/suporteToalha.png' }
+        { nome: 'Produto 8', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
+        { nome: 'Produto 9', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
     ];
+  // Evento de clique nos elementos .prod-itens para redirecionar para a página de detalhes do item
+  const itens = document.querySelectorAll('.prod-itens');
+  itens.forEach((item, index) => {
+      item.addEventListener('click', () => redirecionarParaDetalhes(produtos[index]));
+  });
 
-    // Evento de clique nos elementos .prod-itens para redirecionar para a página de detalhes do item
-    const itens = document.querySelectorAll('.prod-itens');
-    itens.forEach((item, index) => {
-        item.addEventListener('click', () => redirecionarParaDetalhes(produtos[index]));
-    });
+  // Função para redirecionar para a página de detalhes do item
+  function redirecionarParaDetalhes(item) {
+      // Armazene os dados do produto selecionado no sessionStorage
+sessionStorage.setItem('produtoSelecionado', JSON.stringify(item));
+// Redirecione para a página de detalhes do item com os parâmetros na URL
+window.location.href = `detalhes_item.html?nome=${item.nome}&preco=${item.preco}&imagem=${item.imagem}`;
 
-    // Função para redirecionar para a página de detalhes do item
-    function redirecionarParaDetalhes(item) {
-        // Armazene os dados do carrinho no sessionStorage
-        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
-        // Redirecione para a página de detalhes do item com os parâmetros na URL
-        window.location.href = `detalhes_item.html?nome=${item.nome}&preco=${item.preco}&imagem=${item.imagem}`;
-    }
-
-    // Função para fechar a tela modal
-    function fecharModal() {
-        // Implemente aqui a lógica para fechar a tela modal
-        console.log('Fechar modal');
-        // Por enquanto, vamos apenas exibir uma mensagem no console
-    }
+  }
+   
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Recupera os dados do carrinho do sessionStorage
+    let carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+
+    // Função para atualizar o carrinho ao renderizar a página
+    function renderizarPagina() {
+        renderizarCarrinho();
+        atualizarPrecoTotal();
+    }
+
+    // Renderiza o carrinho ao carregar a página
+    renderizarPagina();
+
+    // Eventos de clique para os botões de adicionar e remover itens
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('adicionar-item')) {
+            const nome = event.target.dataset.nome;
+            adicionarItemCarrinho(nome);
+        } else if (event.target.classList.contains('remover-item')) {
+            const nome = event.target.dataset.nome;
+            removerItem(nome);
+        }
+    });
+});
+
