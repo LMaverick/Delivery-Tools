@@ -122,8 +122,16 @@ botoesAdicionar.forEach(botao => {
     });
 });
 
+// Função para recuperar o carrinho do sessionStorage e renderizar na página
+function inicializarCarrinho() {
+    carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+    renderizarCarrinho();
+    atualizarPrecoTotal();
+}
 
     // Renderiza o carrinho quando a página é carregada
     renderizarCarrinho();
     atualizarPrecoTotal();
+     // Inicializa o carrinho ao carregar a página
+     inicializarCarrinho();
 });

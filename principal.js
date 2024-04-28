@@ -7,12 +7,23 @@ setTimeout(function() {
     document.querySelector('.fake-layer').style.display = 'none'; // Oculta a camada falsa
 }, randomTime);
 
+//==========================================================
+
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Recupera os dados do carrinho do sessionStorage
+    let carrinhoData = JSON.parse(sessionStorage.getItem('carrinho'));
+
+    // Verifica se há dados de carrinho no sessionStorage
+    let carrinho = carrinhoData !== null ? carrinhoData : [];
+
+    console.log("Carrinho atualizado:", carrinho);
+
     const carrinhoIcon = document.querySelector('.carrinho-icon');
     const carrinhoTooltip = document.querySelector('.carrinho-tooltip');
+    const carrinhoItems = document.getElementById('carrinho-items');
     const finalizarCompraBtn = document.getElementById('finalizar-compra-btn');
     const precoTotal = document.getElementById('preco-total');
-    let carrinho = []; // Array para armazenar os itens no carrinho
 
     // Função para atualizar o preço total da compra
     function atualizarPrecoTotal() {
@@ -23,9 +34,54 @@ document.addEventListener('DOMContentLoaded', function() {
         precoTotal.textContent = `R$ ${total.toFixed(2)}`;
     }
 
+    // Evento de clique no ícone do carrinho para exibir/ocultar o tooltip
+    carrinhoIcon.addEventListener('click', function() {
+        if (carrinhoTooltip.style.display === 'block') {
+            carrinhoTooltip.style.display = 'none';
+        } else {
+            carrinhoTooltip.style.display = 'block';
+        }
+    });
+
+    // Adicionar evento de clique para o botão "Finalizar Compra"
+    finalizarCompraBtn.addEventListener('click', function() {
+        // Lógica para finalizar a compra (ainda não implementada)
+    });
+
+    // Função para adicionar um item ao carrinho
+    function adicionarItemCarrinho(nome, imagem, preco) {
+        console.log("Adicionando item ao carrinho:", nome);
+        const index = carrinho.findIndex(item => item.nome === nome);
+        if (index !== -1) {
+            carrinho[index].quantidade++;
+        } else {
+            carrinho.push({ nome, imagem, preco, quantidade: 1 });
+        }
+        console.log("Carrinho atualizado:", carrinho);
+        sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+        renderizarCarrinho();
+        atualizarPrecoTotal();
+    }
+
+    // Função para remover um item do carrinho
+    function removerItem(nome) {
+        console.log("Removendo item do carrinho:", nome);
+        const index = carrinho.findIndex(item => item.nome === nome);
+        if (index !== -1) {
+            if (carrinho[index].quantidade > 1) {
+                carrinho[index].quantidade--;
+            } else {
+                carrinho.splice(index, 1);
+            }
+            console.log("Carrinho atualizado:", carrinho);
+            sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
+            renderizarCarrinho();
+            atualizarPrecoTotal();
+        }
+    }
+
     // Função para renderizar os itens do carrinho
     function renderizarCarrinho() {
-        const carrinhoItems = document.getElementById('carrinho-items');
         carrinhoItems.innerHTML = ''; // Limpa o conteúdo anterior
         carrinho.forEach(item => {
             const carrinhoItem = document.createElement('div');
@@ -37,9 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>R$ ${item.preco.toFixed(2)}</p>
                 </div>
                 <div class="carrinho-item-actions">
-                    <button class="remover-item" data-nome="${item.nome}">-</button>
+                    <button class="remover-item">-</button>
                     <span>${item.quantidade}</span>
-                    <button class="adicionar-item" data-nome="${item.nome}">+</button>
+                    <button class="adicionar-item">+</button>
                 </div>
             `;
             carrinhoItems.appendChild(carrinhoItem);
@@ -49,45 +105,17 @@ document.addEventListener('DOMContentLoaded', function() {
             btnRemover.addEventListener('click', () => removerItem(item.nome));
 
             const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
-            btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item));
+            btnAdicionar.addEventListener('click', () => adicionarItemCarrinho(item.nome, item.imagem, item.preco));
         });
-    }    
-
-    // Função para adicionar um item ao carrinho
-    function adicionarItemCarrinho(item) {
-        const index = carrinho.findIndex(i => i.nome === item.nome);
-        if (index !== -1) {
-            carrinho[index].quantidade++;
-        } else {
-            carrinho.push({...item, quantidade: 1});
-        }
-        renderizarCarrinho();
-        atualizarPrecoTotal();
     }
-
-    // Função para remover um item do carrinho
-    function removerItem(nome) {
-        const index = carrinho.findIndex(item => item.nome === nome);
-        if (index !== -1) {
-            if (carrinho[index].quantidade > 1) {
-                carrinho[index].quantidade--;
-            } else {
-                carrinho.splice(index, 1);
-            }
-            renderizarCarrinho();
-            atualizarPrecoTotal();
-        }
-    }
-
-    // Evento de clique no ícone do carrinho para exibir/ocultar o tooltip
-    carrinhoIcon.addEventListener('click', function() {
-        if (carrinhoTooltip.style.display === 'block') {
-            carrinhoTooltip.style.display = 'none';
-        } else {
-            carrinhoTooltip.style.display = 'block';
-            renderizarCarrinho(); // Renderiza o carrinho ao abrir
-        }
+    // Evento de clique nos elementos .adicionar-carrinho para adicionar itens ao carrinho
+const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
+botoesAdicionar.forEach(botao => {
+    botao.addEventListener('click', function() {
+        const produtoSelecionado = JSON.parse(sessionStorage.getItem('produtoSelecionado'));
+        adicionarItemCarrinho(produtoSelecionado.nome, produtoSelecionado.imagem, produtoSelecionado.preco);
     });
+});
 
     // Produtos
     const produtos = [
