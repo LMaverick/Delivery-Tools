@@ -19,23 +19,24 @@
     <div class="container">
         <div class="ld_esq">
             <div class="container2">
-                <div class="imagem-principal">
+                <div class="imagem-principal" id="imagem">
                     <img src="Files/chuveiro1.png" alt="Imagem Principal" id="imagemPrincipal">
                 </div>
                 <div class="miniaturas">
-                    <img src="Files/chuveiro1.png" alt="Miniatura 1" class="miniatura" data-imagem="Files/chuveiro1.png">
-                 <img src="Files/suporteToalha.png" alt="Miniatura 2" class="miniatura" data-imagem="Files/suporteToalha.png">
+                    <img src="Files/chuveiro1.png" alt="Miniatura 1" class="miniatura" data-imagem="Files/chuveiro1.png" id="imagem2">
+                 <img src="Files/suporteToalha.png" alt="Miniatura 2" class="miniatura" data-imagem="Files/suporteToalha.png" id="imagem3">
                     <img src="Files/Torneira.png" alt="Miniatura 3" class="miniatura" data-imagem="Files/Torneira.png">
-                    <img src="Files/promo.jpg" alt="Miniatura 4" class="miniatura" data-imagem="Files/promo.jpg">
+                    <img src="Files/promo.jpg" alt="Miniatura 4" class="miniatura" data-imagem="Files/promo.jpg" id="imagem4">
                 </div>
             </div>
         </div>
 
         <div class="ld-dir">
             <div class="informacoes-produto">
-                <h2 class="nome">Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium</h2>
+                <h2 id="nome">Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium</h2>
+                <h2 id="marca">Loren</h2>
                 <!-- Aqui você pode exibir a nota do produto -->
-                <div class="nota-produto">
+                <div class="nota-produto" id="nota">
                     <!-- Estrelas representando a nota do produto -->
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -44,10 +45,10 @@
                     <span class="fa fa-star"></span>
                 </div>
                 <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
-                <p>Marca: Marca do Produto</p>
-                <p>Tamanho: Tamanho do Produto</p>
-                <p>Material: Material do Produto</p>
-                <p>Sobre: Descrição básica do Produto</p>
+                <p id="marca">Marca: Marca do Produto</p>
+                <p id="tamanha">Tamanho: Tamanho do Produto</p>
+                <p id="material">Material: Material do Produto</p>
+                <p id="sobre">Sobre: Descrição básica do Produto</p>
             </div>
         </div>
     </div>
@@ -76,34 +77,6 @@
                 
             </div>
 
-    <script>
-        // Função para obter os parâmetros da URL
-        function getParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                nome: params.get('nome'),
-                preco: parseFloat(params.get('preco')),
-                imagem: params.get('imagem')
-            };
-        }
 
-        // Função para exibir os detalhes do item
-        function exibirDetalhes() {
-            const detalhesItem = document.getElementById('detalhes-item');
-            const params = getParams();
-            if (params.nome && params.preco && params.imagem) {
-                detalhesItem.innerHTML = `
-                    <img src="${params.imagem}" alt="${params.nome}">
-                    <p>${params.nome}</p>
-                    <p>R$ ${params.preco.toFixed(2)}</p>
-                `;
-            } else {
-                detalhesItem.innerHTML = '<p>Item não encontrado</p>';
-            }
-        }
-
-        // Exibir os detalhes do item ao carregar a página
-        exibirDetalhes();
-    </script>
 </body>
 </html>

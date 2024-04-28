@@ -96,15 +96,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Exemplo de produtos
     const produtos = [
-        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado' },
-        { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' },
-        { nome: 'Produto 3', preco: 23.00, imagem: 'Files/chuveiro1.png' },
+        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/chuveiro1.png', imagem3:'Files/chuveiro1.png', imagem4:'Files/chuveiro1.png'},
+        
+        { nome: 'Produto 2', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/chuveiro1.png', imagem3:'Files/chuveiro1.png', imagem4:'Files/chuveiro1.png'},
+        
+        { nome: 'Produto 3', preco: 23.00, imagem: 'Files/chuveiro1.png', nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/chuveiro1.png', imagem3:'Files/chuveiro1.png', imagem4:'Files/chuveiro1.png' },
+        
         { nome: 'Produto 4', preco: 24.00, imagem: 'Files/Torneira.png' },
+
         { nome: 'Produto 5', preco: 25.00, imagem: 'Files/Torneira.png' },
+
         { nome: 'Produto 6', preco: 26.00, imagem: 'Files/Torneira.png' },
+
         { nome: 'Produto 7', preco: 27.00, imagem: 'Files/suporteToalha.png' },
+
         { nome: 'Produto 8', preco: 28.00, imagem: 'Files/suporteToalha.png' },
+
         { nome: 'Produto 9', preco: 39.00, imagem: 'Files/suporteToalha.png' }
+
     ];
 
     // Evento de clique nos elementos .prod-itens para redirecionar para a página de detalhes do item
