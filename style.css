@@ -812,14 +812,18 @@ html, body{
   }
   
   /* Conteúdo do modal */
-  .modal-contentInfo {
+.modal-contentInfo {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 10px;
     background-color: #b9b9b9; /* Cor de fundo do modal */
     margin: 15% auto; /* Centraliza o modal verticalmente */
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; /* Largura do modal */
-  }
+    width: 60%; /* Largura do modal */
+}
   
   /* Estilo para o botão de fechar (X) */
   .close-button {
@@ -850,7 +854,7 @@ html, body{
     margin: 5px;
 }
 .adicionar-carrinho:hover {
-    background-color: #b47f14;
+    background-color: var(--corvermelho);
 }
 
 
@@ -870,7 +874,7 @@ html, body{
 }
 
 .adicionar-carrinho, .voltar {
-    background-color:rgb(209, 191, 88); 
+    background-color:var(--corlaranja); 
     color: white; 
     padding: 10px 20px;
     font-size: 15px;
