@@ -200,6 +200,7 @@ function abrirModal(index) {
               <img src="${imgSrc}" alt="Product 1 Image 2" onclick="trocarImagem(this)">
           </div>
           <button class="adicionar-carrinho" data-index="${index}">Adicionar ao Carrinho</button>
+          <p>${index}</p>
       </div>
   `;
 

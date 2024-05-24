@@ -106,7 +106,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+/* 
+// Evento de clique nos botões "Adicionar ao Carrinho" com a classe "adicionar-carrinho"
+const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
+botoesAdicionar.forEach(botao => {
+    botao.addEventListener('click', () => {
+        const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
+        const index = parseInt(dataIndex);
+        adicionarItemCarrinho(produtos[index]);
+        document.getElementById("carrinho").style.visibility = "visible";
+        document.querySelector('.carrinho-tooltip').style.display = "block";
+    });
+});
 
+
+
+
+
+// Evento de clique nos botões "Adicionar ao Carrinho" com a classe "prod-carrinho"
+const botoesProdCarrinho = document.querySelectorAll('.prod-carrinho');
+botoesProdCarrinho.forEach(botao => {
+    botao.addEventListener('click', () => {
+        const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
+        const index = parseInt(dataIndex);
+        adicionarItemCarrinho(produtos[index]);
+        document.getElementById("carrinho").style.visibility = "visible";
+        document.querySelector('.carrinho-tooltip').style.display = "block";
+    });
+});
+ */
 
     // Produtos
     const produtos = [
@@ -130,18 +158,46 @@ document.addEventListener('DOMContentLoaded', function() {
         { nome: 'Produto 9', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
     ];
 
-    // Evento de clique nos botões "Adicionar ao Carrinho"
-    const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho,.prod-carrinho');
-    botoesAdicionar.forEach((botao, index) => {
-        botao.addEventListener('click', () => {
-            adicionarItemCarrinho(produtos[index]);
-            document.getElementById("carrinho").style.visibility = "visible";
-            document.querySelector('.carrinho-tooltip').style.display = "block";
-        });
+    const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho,.-carrinprodho');
+botoesAdicionar.forEach(botao => {
+    botao.addEventListener('click', () => {
+        const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
+        const index = parseInt(dataIndex);
+        adicionarItemCarrinho(produtos[index]);
+        document.getElementById("carrinho").style.visibility = "visible";
+        document.querySelector('.carrinho-tooltip').style.display = "block";
     });
+});
 
 
+/*
+// Evento de clique nos botões "Adicionar ao Carrinho" com a classe "adicionar-carrinho"
+const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
+botoesAdicionar.forEach((botao, index) => {
+    botao.addEventListener('click', () => {
+        const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
+        const index = parseInt(dataIndex);
+        adicionarItemCarrinho(produtos[index]);
+        document.getElementById("carrinho").style.visibility = "visible";
+        document.querySelector('.carrinho-tooltip').style.display = "block";
+    });
+});
+
+// Evento de clique nos botões "Adicionar ao Carrinho" com a classe "prod-carrinho"
+const botoesProdCarrinho = document.querySelectorAll('.prod-carrinho');
+botoesProdCarrinho.forEach((botao, index) => {
+    botao.addEventListener('click', () => {
+        const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
+        const index = parseInt(dataIndex);
+        adicionarItemCarrinho(produtos[index]);
+        document.getElementById("carrinho").style.visibility = "visible";
+        document.querySelector('.carrinho-tooltip').style.display = "block";
+    });
+});
+
+});
 
 
+*/
 
 
