@@ -27,7 +27,6 @@ function clos(){
 
 }
 
-//Nome das variaveis 
 
 
 //Button de envio de msg
@@ -142,6 +141,8 @@ gerarQRCodeBtn .addEventListener("click", function() {
 });
 });
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
   // Obtém todos os elementos com a classe "controleDaImg"
   var produtos = document.querySelectorAll('.controleDaImg');
@@ -174,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <img src="Files/Torneira.png" alt="Product 1 Image 1" onclick="trocarImagem(this)">
         <img src="${imgSrc}" alt="Product 1 Image 2" onclick="trocarImagem(this)">
       </div>
-      <button class="adicionar-carrinho" id="adicionar-carrinho" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+      <button class="adicionar-carrinho"  class="prod-carrinho"  data-index="3">Adicionar ao Carrinho</button>
     </div>
         
       `;
