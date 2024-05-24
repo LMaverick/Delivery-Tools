@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Evento de clique nos botões "Adicionar ao Carrinho"
-    const botoesAdicionar = document.querySelectorAll('.prod-carrinho');
+    const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho,.prod-carrinho');
     botoesAdicionar.forEach((botao, index) => {
         botao.addEventListener('click', () => {
             const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // Evento de clique nos botões "Adicionar ao Carrinho"
-    const botoesAdicionar = document.querySelectorAll('.prod-carrinho');
+    const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho,.prod-carrinho');
     botoesAdicionar.forEach((botao, index) => {
         botao.addEventListener('click', () => {
             adicionarItemCarrinho(produtos[index]);
