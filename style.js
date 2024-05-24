@@ -141,79 +141,88 @@ gerarQRCodeBtn .addEventListener("click", function() {
 });
 });
 
+//========================================
 
 
 document.addEventListener('DOMContentLoaded', function() {
   // Obtém todos os elementos com a classe "controleDaImg"
   var produtos = document.querySelectorAll('.controleDaImg');
 
-  // Adiciona um evento de clique a cada produto
-  produtos.forEach(function(produto) {
-    produto.addEventListener('click', function() {
-      // Obtém os detalhes do produto clicado
-      var imgSrc = produto.querySelector('.prod-img img').getAttribute('src');
-      var nomeProduto = produto.querySelector('.prod-txt').textContent;
-      var precoProduto = produto.querySelector('.prod-preco').textContent;
-
-      // Preenche o modal com os detalhes do produto que está no jtml as informação
-      var modalContent = document.getElementById('modal-contentInfo');
-      modalContent.innerHTML = `
-      
-      <div class="conatineModal">
-      <img src="${imgSrc}" alt="principal">
-      <div class="nota-produto" id="nota">
-        <!-- Estrelas representando a nota do produto -->
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>
-      <p class="produtoNames">${nomeProduto}</p>
-      <p class="produtoNames">${precoProduto}</p>
-      <div class="product-images">
-        <img src="Files/Torneira.png" alt="Product 1 Image 1" onclick="trocarImagem(this)">
-        <img src="${imgSrc}" alt="Product 1 Image 2" onclick="trocarImagem(this)">
-      </div>
-      <button class="adicionar-carrinho"  class="prod-carrinho"  data-index="3">Adicionar ao Carrinho</button>
-    </div>
-        
-      `;
-      // Exibe o modal
-      var modal = document.getElementById('myModal');
-      modal.style.display = 'block';
-
-      // Fecha o modal quando o usuário clica no botão "Fechar" (X)
-      var closeModal = document.querySelector('.close-button');
-      closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
+  // Adiciona um evento de clique a cada produto e botão de adicionar ao carrinho
+  produtos.forEach(function(produto, index) {
+      produto.addEventListener('click', function() {
+          abrirModal(index);
       });
 
-      // Fecha o modal quando o usuário clica fora da área do modal
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = 'none';
-        }
-      };
-    });
+      var botaoAdicionar = produto.querySelector('.adicionar-carrinho');
+      if (botaoAdicionar) {
+          botaoAdicionar.addEventListener('click', function(event) {
+              event.stopPropagation(); // Impede a propagação do evento de clique para o elemento pai (.controleDaImg)
+              adicionarAoCarrinho(index);
+          });
+      }
+
+      var botaoProdCarrinho = produto.querySelector('.prod-carrinho');
+      if (botaoProdCarrinho) {
+          botaoProdCarrinho.addEventListener('click', function(event) {
+              event.stopPropagation(); // Impede a propagação do evento de clique para o elemento pai (.controleDaImg)
+              adicionarAoCarrinho(index);
+          });
+      }
   });
 });
 
-// Função para trocar a imagem principal com a imagem clicada
-function trocarImagem(img) {
-  var imgPrincipal = document.querySelector('.conatineModal img[alt="principal"]');
-  var imgSrc = img.src;
-  img.src = imgPrincipal.src;
-  imgPrincipal.src = imgSrc;
-  console.log("oi")
+// Função para abrir o modal com os detalhes do produto
+function abrirModal(index) {
+  var produto = produtos[index];
+  var imgSrc = produto.imagem;
+  var nomeProduto = produto.nome;
+  var precoProduto = produto.preco.toFixed(2);
+
+  // Preenche o modal com os detalhes do produto
+  var modalContent = document.getElementById('modal-contentInfo');
+  modalContent.innerHTML = `
+      <div class="conatineModal">
+          <img src="${imgSrc}" alt="principal">
+          <div class="nota-produto" id="nota">
+              <!-- Estrelas representando a nota do produto -->
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+          </div>
+          <p class="produtoNames">${nomeProduto}</p>
+          <p class="produtoNames">R$ ${precoProduto}</p>
+          <div class="product-images">
+              <img src="Files/Torneira.png" alt="Product 1 Image 1" onclick="trocarImagem(this)">
+              <img src="${imgSrc}" alt="Product 1 Image 2" onclick="trocarImagem(this)">
+          </div>
+          <button class="adicionar-carrinho" class="prod-carrinho" data-index="${index}">Adicionar ao Carrinho</button>
+      </div>
+  `;
+
+  // Exibe o modal
+  var modal = document.getElementById('myModal');
+  modal.style.display = 'block';
+
+  // Fecha o modal quando o usuário clica no botão "Fechar" (X)
+  var closeModal = document.querySelector('.close-button');
+  closeModal.addEventListener('click', function() {
+      modal.style.display = 'none';
+  });
+
+  // Fecha o modal quando o usuário clica fora da área do modal
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = 'none';
+      }
+  };
 }
 
 // Função para adicionar o produto ao carrinho
-function adicionarAoCarrinho() {
-  // Adicione aqui a lógica para adicionar o produto ao carrinho
+function adicionarAoCarrinho(index) {
+  adicionarItemCarrinho(produtos[index]);
   document.getElementById("carrinho").style.visibility = "visible";
-    document.querySelector('.carrinho-tooltip').style.display = "block";
- 
+  document.querySelector('.carrinho-tooltip').style.display = "block";
 }
-
-
