@@ -258,20 +258,24 @@ botoesProdCarrinho.forEach(botao => {
     const produtos = [
         { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'5',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
         
-        { nome: 'Produto 2', preco: 25.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Torneira Gourmet Dou ', preco: 180,00, imagem: 'Files/Dou2.png' , nota:'3',marca:'Alira Home', tamanho:'150x200x300mm', material:'plastico', sobre:'Torneira Cozinha Gourmet Misturador Ducha Duo Spray Preto Alira Home
+', imagem2:'Files/Duo2.png', imagem3:'Files/Torneira.png', imagem4:'Files/Duo2.png'},
         
-        { nome: 'Produto 3', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Fudeira borsche 110v', preco: 239,90 imagem: 'Files/furadeira1.png' , nota:'3',marca:'bosch', tamanho:'150x200x300mm', material:'plastico', sobre:'Furadeira Industrial de Impacto 3/8 POL com Reversão 450W GSB 450 RE BOSCH 110V
+', imagem2:'Files/furadeira1.png',}
 
-        { nome: 'Produto 4', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Esmilhadeira bosch', preco: 399,99 imagem: 'Files/esmilhadeira1.png' , nota:'4,5',marca:'Bosch', tamanho:'150x200x300mm', material:'plastico', sobre:'Esmerilhadeira Angular GWS700 4.1/2" 710W 127V Bosch
+', imagem2:'Files/esmilhadeira1.png', imagem3:'Files/esmilhadeira1.png'},
 
-        { nome: 'Produto 5', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Serra tico-tico 220v', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'borsche', tamanho:'150x200x300mm', material:'plastico', sobre:'Serra Tico-Tico Elétrica Bosch 220V 500w GST 680 para Madeira, Metal, Plástico, Drywall
+', imagem2:'Files/Serra3.png', imagem3:'Files/serra3.png'},
 
-        { nome: 'Produto 6', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Chuveiro tradicional', preco: 80,00 imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 7', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Torneira Black alta Pressao', preco: 88,90, imagem: 'Files/Black3.png' , nota:'3',marca:'Black imports', tamanho:'150x200x300mm', material:'plastico', sobre:'Torneira Banheiro Alta Preta Fosco Bica Alta Preta Lavatório - 3040mediablack
+', imagem2:'Files/black3.png'},
        
-
-        { nome: 'Produto 8', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+       { nome: 'Torneira gourmet parede com Filtro', preco: 139,90 imagem: 'Files/gourmet2.png' , nota:'3',marca:'all imports', tamanho:'150x200x300mm', material:'plastico', sobre:'Torneira Gourmet Cozinha Parede Com Filtro + 2refis Pro Saúde - 2167 C70conecrom2Refil', imagem2:'Files/Gourmet2.png'},
 
         { nome: 'Produto 9', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
     ];
