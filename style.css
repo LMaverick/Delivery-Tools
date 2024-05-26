@@ -520,38 +520,38 @@ html, body{
 /*========================================================================================================*/
 /*========================================================================================================*/
 /*========================================================================================================*/
-
-
 .container {
     display: grid;
-    gap: 20px;
+    
+    gap: 20px; /* Espaçamento entre as colunas */
     width: 100%;
     grid-template-areas: 
-        "esq esq dir dir dir";
+        "esq esq dir dir dir"; /* Nomeando as áreas */
 }
 
 .container2 {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr; /* Uma única coluna para o container2 */
+    gap: 20px; /* Espaçamento entre os elementos */
     width: 33vw;
 }
 
 .ld_esq {
-    grid-area: esq;
+    grid-area: esq; /* Define a área do lado esquerdo */
+
 }
 
 .ld_dir {
-    grid-area: dir;
+    grid-area: dir; /* Define a área do lado direito */
 }
 
 .imagem-principal img {
-    max-width: 100%;
+    max-width: 100%; /* Ajusta a largura máxima para ocupar todo o espaço disponível */
 }
 
 .miniaturas {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centraliza as miniaturas horizontalmente */
 }
 
 .miniatura {
@@ -572,7 +572,7 @@ html, body{
 .informacoes-produto h2 {
     font-size: 24px;
     margin-bottom: 10px;
-    font-family: var(--fonte1);
+    font-family: var(--fonte1); /* Utiliza a fonte especificada */
 }
 
 .nota-produto {
@@ -591,8 +591,8 @@ html, body{
 }
 
 .adicionar-carrinho, .voltar {
-    background-color: var(--corlaranja);
-    color: var(--cor1);
+    background-color: var(--corlaranja); 
+    color: var(--cor1); 
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -604,10 +604,8 @@ html, body{
 }
 
 #imagem {
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease; /* Adiciona uma transição suave na mudança de opacidade */
 }
-
-
 
 /*Chat*/
 .botaoStart{

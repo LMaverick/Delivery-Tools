@@ -149,35 +149,50 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preenche o modal com os detalhes do produto
     var modalContent = document.getElementById('modal-contentInfo');
     modalContent.innerHTML = `
-    <div class="container">
-        <div class="ld_esq">
-            <div class="imagem-principal">
-                <img src="${imgSrc}" alt="principal" id="imagem">
-            </div>
-            <div class="miniaturas">
-                <img class="miniatura" src="${imgSrc}" alt="Product Image 1" onclick="trocarImagem(this)">
-                <img class="miniatura" src="${imagem2}" alt="Product Image 2" onclick="trocarImagem(this)">
-                <img class="miniatura" src="${imagem3}" alt="Product Image 3" onclick="trocarImagem(this)">
-                <img class="miniatura" src="${imagem4}" alt="Product Image 4" onclick="trocarImagem(this)">
-            </div>
-        </div>
-        <div class="ld_dir">
-            <div class="informacoes-produto">
-                <h2>${nomeProduto}</h2>
-                <div class="nota-produto" id="nota">
-                    ${'<span class="fa fa-star checked"></span>'.repeat(notaProduto)}
-                    ${'<span class="fa fa-star"></span>'.repeat(5 - notaProduto)}
+        <div class="container">
+            <div class="ld_esq">
+                <div class="imagem-principal">
+                    <img src="${imgSrc}" alt="principal" id="imagem">
                 </div>
-                <p class="produtoPreco">R$ ${precoProduto}</p>
-                <p class="produtoMarca">Marca: ${marcaProduto}</p>
-                <p class="produtoTamanho">Tamanho: ${tamanhoProduto}</p>
-                <p class="produtoMaterial">Material: ${materialProduto}</p>
-                <p class="produtoSobre">${sobreProduto}</p>
-                <button class="adicionar-carrinho" data-index="${index}">Adicionar ao Carrinho</button>
+                <div class="miniaturas">
+                    <img class="miniatura" src="${imgSrc}" alt="Product Image 1" data-imagem="${imgSrc}">
+                    <img class="miniatura" src="${imagem2}" alt="Product Image 2" data-imagem="${imagem2}">
+                    <img class="miniatura" src="${imagem3}" alt="Product Image 3" data-imagem="${imagem3}">
+                    <img class="miniatura" src="${imagem4}" alt="Product Image 4" data-imagem="${imagem4}">
+                </div>
+            </div>
+            <div class="ld_dir">
+                <div class="informacoes-produto">
+                    <h2>${nomeProduto}</h2>
+                    <div class="nota-produto" id="nota">
+                        ${'<span class="fa fa-star checked"></span>'.repeat(notaProduto)}
+                        ${'<span class="fa fa-star"></span>'.repeat(5 - notaProduto)}
+                    </div>
+                    <p class="produtoPreco">R$ ${precoProduto}</p>
+                    <p class="produtoMarca">Marca: ${marcaProduto}</p>
+                    <p class="produtoTamanho">Tamanho: ${tamanhoProduto}</p>
+                    <p class="produtoMaterial">Material: ${materialProduto}</p>
+                    <p class="produtoSobre">${sobreProduto}</p>
+                    <button class="adicionar-carrinho" data-index="${index}">Adicionar ao Carrinho</button>
+                </div>
             </div>
         </div>
-    </div>
     `;
+
+    // Adicionar eventos de mouseenter para trocar as imagens
+    const miniaturas = document.querySelectorAll('.miniatura');
+    const imagemPrincipal = document.getElementById('imagem');
+
+    miniaturas.forEach(miniatura => {
+        miniatura.addEventListener('mouseenter', function() {
+            const novaImagem = this.dataset.imagem;
+            imagemPrincipal.style.opacity = '0'; // Reduz a opacidade para iniciar a transição
+            setTimeout(() => {
+                imagemPrincipal.src = novaImagem; // Altera a imagem após um pequeno atraso para a transição
+                imagemPrincipal.style.opacity = '1'; // Restaura a opacidade para mostrar a nova imagem
+            }, 90); // Tempo de espera para a transição (90ms neste exemplo)
+        });
+    });
 
     // Exibe o modal
     var modal = document.getElementById('myModal');
@@ -209,21 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
       atualizarPrecoTotal();
   }
   
-  document.addEventListener('DOMContentLoaded', function() {
-    const miniaturas = document.querySelectorAll('.miniatura');
-    const imagemPrincipal = document.getElementById('imagem');
 
-    miniaturas.forEach(miniatura => {
-        miniatura.addEventListener('mouseenter', function() {
-            const novaImagem = this.dataset.imagem;
-            imagemPrincipal.style.opacity = '0'; // Reduz a opacidade para iniciar a transição
-            setTimeout(() => {
-                imagemPrincipal.src = novaImagem; // Altera a imagem após um pequeno atraso para a transição
-                imagemPrincipal.style.opacity = '1'; // Restaura a opacidade para mostrar a nova imagem
-            }, 90); // Tempo de espera para a transição (300ms neste exemplo)
-        });
-    });
-});
+
 /* 
 // Evento de clique nos botões "Adicionar ao Carrinho" com a classe "adicionar-carrinho"
 const botoesAdicionar = document.querySelectorAll('.adicionar-carrinho');
@@ -260,22 +262,23 @@ botoesProdCarrinho.forEach(botao => {
         
         { nome: 'Produto 2', preco: 25.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
         
-        { nome: 'Produto 3', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Produto 3', preco: 22.00, imagem: 'Files/Torneira.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 4', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Produto 4', preco: 22.00, imagem: 'Files/Torneira.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 5', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Produto 5', preco: 22.00, imagem: 'Files/Torneira.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
         { nome: 'Produto 6', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 7', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Produto 7', preco: 22.00, imagem: 'Files/SuporteToalha.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
        
 
-        { nome: 'Produto 8', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Produto 8', preco: 22.00, imagem: 'Files/SuporteToalha.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
 
-        { nome: 'Produto 9', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        { nome: 'Produto 9', preco: 22.00, imagem: 'Files/SuporteToalha.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
     ];
 
+    
 /*
 ======================================================================
 */
@@ -421,7 +424,8 @@ function help() {
       document.getElementById("myModal").style.display = "none";
   });
   });
-  
+
+
   //========================================
   
   
