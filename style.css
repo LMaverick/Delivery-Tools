@@ -111,7 +111,12 @@ html, body{
     z-index: 1;
     align-self: flex-start;
     margin-left: 20px;
+
+    
 }
+
+
+
 #top-tittle{
     font-size: 90px;
     font-weight: 200;
@@ -391,6 +396,8 @@ html, body{
     opacity: 1; /* Torna o botão visível ao passar o mouse */
 }
 
+
+
 /*==========================================================*/
 
 
@@ -525,6 +532,7 @@ html, body{
     
     gap: 20px; /* Espaçamento entre as colunas */
     width: 100%;
+    padding-bottom: 40px;
     grid-template-areas: 
         "esq esq dir dir dir"; /* Nomeando as áreas */
 }
@@ -547,16 +555,21 @@ html, body{
 
 .imagem-principal img {
     max-width: 100%; /* Ajusta a largura máxima para ocupar todo o espaço disponível */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .miniaturas {
     display: flex;
     justify-content: center; /* Centraliza as miniaturas horizontalmente */
+    margin-top: 15px;
 }
 
 .miniatura {
     width: 50px;
     height: 50px;
+
     margin-right: 10px;
     cursor: pointer;
 }
@@ -567,12 +580,14 @@ html, body{
 
 .informacoes-produto {
     padding: 20px;
+    margin-top: 15px;
 }
 
 .informacoes-produto h2 {
     font-size: 24px;
     margin-bottom: 10px;
     font-family: var(--fonte1); /* Utiliza a fonte especificada */
+    margin-top: 15px;
 }
 
 .nota-produto {
@@ -590,21 +605,33 @@ html, body{
     color: var(--corlaranja);
 }
 
-.adicionar-carrinho, .voltar {
+.adicionar-carrinho {
+    position: absolute; 
+    width: 100%;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%); 
     background-color: var(--corlaranja); 
-    color: var(--cor1); 
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 10px;
+    color: var(--cor1);
+    border: none; 
+    padding: 8px 10px; 
+
+    cursor: pointer; 
+
+    transition: opacity 0.3s ease-in-out;
+
+    font-size: 15px;
+    text-align: center;
+    font-weight: 600; 
 }
 
 .adicionar-carrinho:hover {
     background-color: #b47f14;
 }
 
+
 #imagem {
-    transition: opacity 0.3s ease; /* Adiciona uma transição suave na mudança de opacidade */
+    transition: opacity 0.5s ease; /* Adiciona uma transição suave na mudança de opacidade */
 }
 
 /*Chat*/
@@ -800,7 +827,7 @@ html, body{
   right: 64px;
   top: 85%;
 }
-
+/*=======================================================================================*/
 /*Finalizar compra*/
 .modal {
     display: none;
@@ -815,7 +842,7 @@ html, body{
 }
 
 .modal-content {
-    background-color: #020202;
+    background-color: var(--cor2);
     margin: 15% auto;
     padding: 20px;
     width: 25%;
@@ -824,7 +851,7 @@ html, body{
 }
 
 .close {
-    color: #aaa;
+    color: var(--corvermelho);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -855,11 +882,13 @@ html, body{
     border-radius: 5px;
 }
 #gerar-qrcode{
+    background-color: var(--corlaranja);
+    color: white;   
     cursor: pointer;
     margin-top: 10px;
 }
 #gerar-qrcode:hover{
-    background-color: rgb(0, 102, 255);
+    background-color: #b47f14;
     color: white;    
 }
 #alert{
@@ -868,8 +897,8 @@ html, body{
     width: 380px;
     height: 80px;
     text-align: center;
-    background-color: #020202;
-    color: whitesmoke;
+    background-color: #ffffff;
+    color: var(--corpreto);
     top: 8%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -877,14 +906,14 @@ html, body{
     box-shadow: 3px 5px 10px rgba(255, 255, 255, 0.432);
 }
 .valor{
-    color: whitesmoke;
+    color: var(--corpreto);
     padding: 7px;
 }
 #preco-totalTwo{
-    color: greenyellow;
+    color: var(--corvermelho);
 }
 #preco-totalthree{
-    color: greenyellow;
+    color: var(--corvermelho);
     position: absolute;
 }
 
@@ -944,9 +973,7 @@ html, body{
     width: 100px;
     margin: 5px;
 }
-.adicionar-carrinho:hover {
-    background-color: var(--corvermelho);
-}
+
 
 
 .nota-produto {
@@ -964,12 +991,4 @@ html, body{
     color: rgb(255, 217, 0);
 }
 
-.adicionar-carrinho, .voltar {
-    background-color:var(--corlaranja); 
-    color: white; 
-    padding: 10px 20px;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
+

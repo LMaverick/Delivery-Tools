@@ -100,24 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
         botao.addEventListener('click', () => {
             const dataIndex = botao.getAttribute('data-index'); // Obtém o índice do atributo data-index
             const index = parseInt(dataIndex);
-            adicionarItemCarrinho(produtos[dataIndex]);
+            adicionarItemCarrinho(produtos[index]);
             document.getElementById("carrinho").style.visibility = "visible";
             document.querySelector('.carrinho-tooltip').style.display = "block";
         });
     });
 
-    const botoesAdicionar2 = document.querySelectorAll('.adicionar-carrinho');
-      botoesAdicionar2.forEach((botao) => {
-          botao.addEventListener('click', () => {
-              const dataID = botao.getAttribute('data-id'); // Obtém o índice do atributo data-index
-              const index = parseInt(dataIndex);
-              adicionarItemCarrinho(produtos[dataID]);
-              document.getElementById("carrinho").style.visibility = "visible";
-              document.querySelector('.carrinho-tooltip').style.display = "block";
-          });
-
-
-});
 
     // Obtém todos os elementos com a classe "controleDaImg"
     var produtos2 = document.querySelectorAll('.controleDaImg');
@@ -173,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="produtoTamanho">Tamanho: ${tamanhoProduto}</p>
                     <p class="produtoMaterial">Material: ${materialProduto}</p>
                     <p class="produtoSobre">${sobreProduto}</p>
-                    <button class="adicionar-carrinho" data-index="${index}">Adicionar ao Carrinho</button>
+                    <button class="adicionar-carrinho">Continuar Vendo Mais Produtos</button>
                 </div>
             </div>
         </div>
@@ -204,6 +192,11 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'none';
     });
   
+    var closeModal2 = document.querySelector('.adicionar-carrinho');
+    closeModal2.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+  
     // Fecha o modal quando o usuário clica fora da área do modal
     window.onclick = function(event) {
         if (event.target == modal) {
@@ -212,18 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
   
-   // Função para adicionar um item ao carrinho
-   function adicionarItemCarrinho(item) {
-      const index = carrinho.findIndex(i => i.nome === item.nome);
-      if (index !== -1) {
-          carrinho[index].quantidade++;
-      } else {
-          carrinho.push({...item, quantidade: 1});
-      }
-      renderizarCarrinho();
-      atualizarPrecoTotal();
-  }
-  
+
 
 
 /* 
