@@ -91,7 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const nomeProduto = carrinhoItem.querySelector('.nome-item').textContent; // Obtém o nome do produto
                 removerItem(nomeProduto);
             });
-        });
+        
+            const btnAdicionar = carrinhoItem.querySelector('.adicionar-item');
+            btnAdicionar.addEventListener('click', () => {
+                const nomeProduto = carrinhoItem.querySelector('.nome-item').textContent; // Obtém o nome do produto
+                const produto = carrinho.find(i => i.nome === nomeProduto); // Encontra o produto no carrinho
+                adicionarItemCarrinho(produto);
+            });
+    });
     }
 
     // Evento de clique nos botões "Adicionar ao Carrinho"
@@ -381,7 +388,10 @@ function help() {
       setTimeout(function() {
           document.getElementById("alert").style.display = "block";
           enviarMensagemConfirmacao(UserEmail, nameUsuario);
-      }, 5000); // Simulando um tempo de 5 segundos antes de enviar a mensagem
+          esvaziarCarrinho();
+      }, 1000); // Simulando um tempo de 5 segundos antes de enviar a mensagem
+
+
   });
   
   });
@@ -407,6 +417,7 @@ function help() {
   });
   });
 
+  
 
   //========================================
   
