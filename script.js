@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="container">
             <div class="ld_esq">
                 <div class="imagem-principal">
-                    <img src="${imgSrc}" alt="principal" id="imagem">
+                <div class="prod-img"><img src="${imgSrc}" alt="principal" id="imagem"></div>
                 </div>
                 <div class="miniaturas">
                     <img class="miniatura" src="${imgSrc}" alt="Product Image 1" data-imagem="${imgSrc}">
@@ -247,27 +247,149 @@ botoesProdCarrinho.forEach(botao => {
 
     // Produtos
     const produtos = [
-        { nome: 'Suporte Banheiro Porta Toalha Toalheiro De Banho Duplo 90° Adesivo Sem Furo Premium', preco: 79.90, imagem: 'Files/chuveiro1.png', nota:'5',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-        
-        { nome: 'Produto 2', preco: 25.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-        
-        { nome: 'Produto 3', preco: 22.00, imagem: 'Files/Torneira.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        {
+            nome: 'Ducha Top Jet Lorenzetti 4 Temperaturas 220v 7500w',
+            preco: 63.90,
+            imagem: 'Files/produto1-1.jpg',
+            nota: '4.6',
+            marca: 'LORENZETTI',
+            tamanho: 'N/A',
+            material: 'Plásticos de engenharia e ligas de metal',
+            sobre: 'Comando multitemperaturas: quatro temperaturas – mais conforto e economia. Fácil Instalação. Resistência de troca rápida: tipo refil, de fácil acesso. Grande espalhador: mais conforto no seu banho. Cor: branco',
+            imagem2: 'Files/produto1-2.jpg',
+            imagem3: 'Files/produto1-3.jpg',
+            imagem4: 'Files/produto1-4.jpg'
+        },
+        {
+            nome: 'Lorenzetti Loren Shower Ultra Multitemperaturas, 7500W, 220V, Branco',
+            preco: 75.20,
+            imagem: 'Files/produto2-1.png',
+            nota: '3',
+            marca: 'LORENZETTI',
+            tamanho: '150x200x300mm',
+            material: 'Plástico',
+            sobre: 'Estilo Moderno, Forma Quadrado, Tipo de acabamento Polido',
+            imagem2: 'Files/produto2-2.jpg',
+            imagem3: 'Files/produto2-3.jpg',
+            imagem4: 'Files/produto2-4.jpg'
+        },
+        {
+            nome: 'Chuveiro Acqua Duo 220V 7800W, Lorenzetti, 7510098, Branco, Pequeno',
+            preco: 120.90,
+            imagem: 'Files/produto3-1.jpg',
+            nota: '4.6',
+            marca: 'LORENZETTI',
+            tamanho: 'N/A',
+            material: 'Plásticos de engenharia e ligas de metal',
+            sobre: 'Tecnologia Press Plus: Jatos de alta performance mesmo com baixa pressão. Exclusiva resistência Loren Ultra - Longa duração em comparação as resistências comuns. Resistência de troca rápida Loren Ultra: Exclusivo cartucho que garante uma troca rápida e segura. Comando eletrônico: permite a escolha gradual e precisa da temperatura. Haste de controle de temperaturas: controle de temperaturas ao alcance das mãos (uso opcional). Fácil instalação: em poucos passos a ducha é instalada ou removida.',
+            imagem2: 'Files/produto3-2.jpg',
+            imagem3: 'Files/produto3-3.jpg',
+            imagem4: 'Files/produto3-4.jpg'
+        },
+        {
+            nome: 'Torneira Cozinha Gourmet Flexível Luxo Parede 1/4 De Volta Metal',
+            preco: 38.69,
+            imagem: 'Files/produto4-1.jpg',
+            nota: '4.2',
+            marca: 'Olimar',
+            tamanho: 'Presente na imagem',
+            material: 'Latão, Metal, Cobre',
+            sobre: 'Acabamento/acionamento do tipo alavanca em metal cromado. Duas opções de jato: contínuo e chuveirinho. Acionamento 1/4 de volta: maior praticidade e economia. Tubo flexível gourmet também em metal.',
+            imagem2: 'Files/produto4-2.jpg',
+            imagem3: 'Files/produto4-3.jpg',
+            imagem4: 'Files/produto4-4.jpg',
+        },
+        {
+            nome: 'Torneira Banheiro Luxo Quadrada 1/4 Volta Inox Aço Preta Bancada Pia Banheiro Alto Padrão',
+            preco: 53.69,
+            imagem: 'Files/produto5-1.jpg',
+            nota: '4.5',
+            marca: 'Generic',
+            tamanho: 'Presente na imagem',
+            material: 'Aço inoxidável',
+            sobre: 'Acabamento/acionamento do tipo alavanca em metal cromado. Duas opções de jato: contínuo e chuveirinho. Acionamento 1/4 de volta: maior praticidade e economia. Tubo flexível gourmet também em metal.',
+            imagem2: 'Files/produto5-2.jpg',
+            imagem3: 'Files/produto5-3.jpg',
+            imagem4: 'Files/produto5-4.jpg',
+        },
+        {
+            nome: 'Torneira Com Filtro Cozinha Parede Flexível Gourmet Abs',
+            preco: 97.99,
+            imagem: 'Files/produto6-1.jpg',
+            nota: '4.2',
+            marca: 'Dazie Metais',
+            tamanho: '',
+            material: 'ABS',
+            sobre: 'Torneira Com Filtro Gourmet Modelo em ABS - Refil Blindado Pro Saúde - NÃO ENFERRUJA. O ABS detém propriedades específicas como boa resistência a impacto, à tração e à abrasão (desgaste por fricção; raspagem). Quando comparado a outros materiais o plástico ABS apresenta certa resistência ao calor e às baixas temperaturas, podendo ser utilizado normalmente em temperaturas que variam de -20°C a 80°C. Torneira Gourmet da Dazie Metais montada no Brasil com CERTIFICAÇÃO autorizada pelo INMETRO em seu refil de filtragem. Seu design é inspirado para praticidade ao lavar louças. Trabalha junto à sustentabilidade com redução no fluxo contínuo de água. Seu modo de filtragem é processado por refil blindado. Sistema de filtragem com carvão ativado. Possuí retenção de partículas. Torneira Gourmet a mais procurada pelas famílias.',
+            imagem2: 'Files/produto6-2.jpg',
+            imagem3: 'Files/produto6-3.jpg',
+            imagem4: 'Files/produto6-4.jpg',
+        },
 
-        { nome: 'Produto 4', preco: 22.00, imagem: 'Files/Torneira.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 5', preco: 22.00, imagem: 'Files/Torneira.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 6', preco: 22.00, imagem: 'Files/chuveiro1.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 7', preco: 22.00, imagem: 'Files/SuporteToalha.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-       
-
-        { nome: 'Produto 8', preco: 22.00, imagem: 'Files/SuporteToalha.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
-
-        { nome: 'Produto 9', preco: 22.00, imagem: 'Files/SuporteToalha.png' , nota:'3',marca:'Lorenzetti', tamanho:'150x200x300mm', material:'plastico', sobre:'Acabamento/acionamento do tipo alavanca em metal cromado', imagem2:'Files/SuporteToalha.png', imagem3:'Files/Torneira.png', imagem4:'Files/SuporteToalha.png'},
+        {
+            nome: 'Suporte de chuveiro a vácuo com ventosa sem perfuração removível à prova d\'água',
+            preco: 80.00,
+            imagem: 'Files/produto7-1.jpg',
+            nota: '4.4',
+            marca: 'ilikable',
+            tamanho: '12P x 30,5L x 20,9A cm',
+            material: 'Acrilonitrila butadieno estireno',
+            sobre: 'Ventosa potente e resistente – Capacidade máxima de 10 kg. Não precisa de ferramentas e antidanos – o organizador de banheiro com ventosa pode concluir a instalação em um segundo. Design exclusivo de ventilação e drenagem – Este fundo de prateleira de sucção de chuveiro é inclinado (inclinação de -6°). Gancho de borda – economizando mais espaço. ilikable O organizador de chuveiro de banheiro inclui duas ventosas a vácuo, um rack de chuveiro, um cartão de remoção, um manual de instruções.',
+            imagem2: 'Files/produto7-2.jpg',
+            imagem3: 'Files/produto7-3.jpg',
+            imagem4: 'Files/produto7-4.jpg',
+        },
+        {
+            nome: 'Kit 2 Prateleira Para Banheiro de Canto Porta Shampoo Sabonete Nicho Organizador Cozinha Lavanderia Aluminio Resistente Estilo Industrial Clean',
+            preco: 45.80,
+            imagem: 'Files/produto8-1.jpg',
+            nota: '4.4',
+            marca: 'BRIWAX',
+            tamanho: '31P x 13,4L x 5A cm',
+            material: 'Alumínio',
+            sobre: 'Prateleira suporte Organizador para Shampoo, Sabonete, Condicionador, Creme, Esponja, Perfume, Frascos, itens de higiene e beleza. Diga adeus aos furos nas paredes! As prateleiras autoadesivas proporcionam uma instalação fácil e sem danos. Material reforçado de Alumínio e Pintura resistente a umidade evitando a ferrugem.',
+            imagem2: 'Files/produto8-2.jpg',
+            imagem3: 'Files/produto8-3.jpg',
+            imagem4: 'Files/produto8-4.jpg',
+        },
+        {
+            nome: 'Prateleira Suporte Organizador De Parede Aluminio Adesivo Sem Fura Parede Moderno',
+            preco: 33.60,
+            imagem: 'Files/produto9-1.jpg',
+            nota: '4.5',
+            marca: 'Nipo',
+            tamanho: '13,8P x 31,4L x 10A cm',
+            material: 'Alumínio',
+            sobre: 'Prateleira flutuante, montagem na parede, ideal para banheiro e cozinha. Material reforçado com pintura resistente à umidade. Facilmente instalada sem necessidade de furos, proporcionando praticidade e durabilidade.',
+            imagem2: 'Files/produto9-2.jpg',
+            imagem3: 'Files/produto9-3.jpg',
+            imagem4: 'Files/produto9-4.jpg',
+        },
     ];
 
+    function atualizarProdutosExistentes() {
+        const prodItems = document.querySelectorAll('.prod-itens');
     
+        prodItems.forEach((item, index) => {
+            if (produtos[index]) {
+                const produto = produtos[index];
+    
+                const imgElement = item.querySelector('.prod-img img');
+                const txtElement = item.querySelector('.prod-txt');
+                const precoElement = item.querySelector('.prod-preco');
+                const buttonElement = item.querySelector('.prod-carrinho');
+    
+                if (imgElement) imgElement.src = produto.imagem;
+                if (imgElement) imgElement.alt = produto.nome;
+                if (txtElement) txtElement.textContent = produto.nome;
+                if (precoElement) precoElement.textContent = `R$ ${produto.preco.toFixed(2)}`;
+                if (buttonElement) buttonElement.dataset.index = index;
+            }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', atualizarProdutosExistentes);
+
 /*
 ======================================================================
 */

@@ -307,9 +307,10 @@ html, body{
 }
 
 .prod-img {
-    width: 100%; 
-    height: 250px; 
+    width: 350px; 
+    height: 350px; 
     overflow: hidden; 
+    margin:0 auto;
 }
 
 .prod-img img{
@@ -940,7 +941,7 @@ html, body{
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    background-color: #b9b9b9; /* Cor de fundo do modal */
+    background-color: #ffffff; /* Cor de fundo do modal */
     margin: 15% auto; /* Centraliza o modal verticalmente */
     padding: 20px;
     border: 1px solid #888;
