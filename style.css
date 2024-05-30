@@ -314,10 +314,10 @@ html, body{
 }
 
 .prod-img img{
-    width: 100%; 
+    max-width: 93%; 
     height: 100%; 
     object-fit: contain;
-    transition: transform 0.7s ease;
+    transition: transform 0.7s ease;    
 }
 
 .prod-img:hover img {
@@ -336,7 +336,6 @@ html, body{
     transition: transform .5s linear;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-
 }
 
 .prod-itens:hover {
@@ -582,14 +581,27 @@ html, body{
 
 .informacoes-produto {
     padding: 20px;
-    margin-top: 15px;
+    margin-top: 10px; /* Reduza o espaço entre as informações do produto */
 }
 
 .informacoes-produto h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    font-family: var(--fonte1); /* Utiliza a fonte especificada */
-    margin-top: 15px;
+    font-size: 22px; /* Reduza um pouco o tamanho da fonte do título */
+    margin-bottom: 5px; /* Reduza o espaço abaixo do título */
+}
+
+.nota-produto {
+    font-size: 18px; /* Reduza um pouco o tamanho da fonte da nota do produto */
+    margin-bottom: 5px; /* Reduza o espaço abaixo da nota do produto */
+}
+
+.produtoPreco {
+    font-size: 18px; /* Ajuste o tamanho da fonte do preço */
+    margin-bottom: 5px; /* Reduza o espaço abaixo do preço */
+}
+
+.produtoMarca, .produtoTamanho, .produtoMaterial {
+    font-size: 16px; /* Ajuste o tamanho da fonte das informações adicionais */
+    margin-bottom: 3px; /* Reduza o espaço entre as informações adicionais */
 }
 
 .nota-produto {
