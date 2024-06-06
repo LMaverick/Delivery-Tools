@@ -183,21 +183,21 @@
     </div>
 
     <!--Chat-->
-    <div class="container">
-        <div class="botaoStart" onclick="help()" id="botaoStartId">
-            <div class="live-help-icon">
-                <div class="triangulo"></div>
-            </div>
+    <div class="chatbot-container">
+        <div class="chatbot-icon" id="chatbot-icon">
+            ?
         </div>
-        <div class="tela">
-            <div class="barraClose">
-                <i class="fa fa-close" style="font-size:25px;" onclick="clos()"></i>
+        <div class="chatbot-chatbox" id="chatbot-chatbox">
+            <div class="chatbot-header">
+                Atendimento ao Cliente
+                <span class="chatbot-close" id="chatbot-close">&times;</span>
             </div>
-            <div class="lista" id="lista">
+            <div class="chatbot-messages" id="chatbot-messages">
+               
             </div>
-            <div class="botaoEnvio" >
-                <textarea id="nome" placeholder="Digite sua mensagem aqui" class="texto-multilinha"></textarea>
-                 <button id="btFechar">Enviar</button>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Digite sua mensagem...">
+                <button id="chatbot-send">Enviar</button>
             </div>
         </div>
     </div>

@@ -394,75 +394,79 @@ botoesProdCarrinho.forEach(botao => {
 ======================================================================
 */
 //Abre a tela do nosso chat e já da o focu para parte de digitar o texto
-function help() {
-    document.querySelector(".botaoStart").style.display = "none";
-    document.querySelector(".tela").style.visibility = "visible";
-    
-    var lista = document.querySelector(".lista");
-    if (lista) {
-      lista.scrollTop = lista.scrollHeight;
-    }
-  }
-  
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    var botaoStart = document.getElementById("botaoStartId");
-    if (botaoStart) {
-        botaoStart.addEventListener('click', function() {
-            document.getElementById("nome").focus(); // Direciona o foco para o campo de texto quando o botão é clicado
-        });
-    }
-  });
-  
-  
-  //Fecha a tela do chat 
-  function clos(){
-     document.querySelector(".tela").style.visibility = "hidden";
-     document.querySelector(".botaoStart").style.display = "block";
-  
-  }
-  
-  
-  
-  //Button de envio de msg
-  document.addEventListener('DOMContentLoaded', function() {
-    const button = document.getElementById('btFechar');
-    const nome = document.getElementById('nome');
-    const lista = document.querySelector('.lista');
-  
-    button.addEventListener('click', function() {
-        const inputName = nome.value;
-        const inputNamee = inputName.toLowerCase();
-        nome.value = '';
-  
-        // Verifica se o campo de texto está vazio, não permite o envio de msg vazia
-        if (inputName === "") {
-            return; // Encerra a execução da função para que a mensagem de erro não seja removida abaixo
-        }
-  
-        // Aqui você pode continuar com o restante do código para processar a entrada do usuário
-        const palavrasChave = ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite"];
-  
-        if (palavrasChave.includes(inputNamee)) {
-            const templateHTMLL = `<p id="msg">${inputNamee.charAt(0).toUpperCase() + inputNamee.slice(1)}</p><p id="ok">${inputNamee.charAt(0).toUpperCase() + inputNamee.slice(1)}, tudo bem? No que posso ajudar?</p>`;
-            lista.innerHTML += templateHTMLL;
-        } else if (inputNamee === "quero saber o que tem?") {
-            const templateHTMLL = `<p id="msg">${inputNamee.charAt(0).toUpperCase() + inputNamee.slice(1)}</p><p id="ok">Muito bem, temos estas opções</p>`;
-            lista.innerHTML += templateHTMLL;
-        } else {
-            const templateHTML = `<p id="msg">${inputName}</p><p id="ok">Desculpa, não consegui entender</p>`;
-            lista.innerHTML += templateHTML;
-        }
-        lista.scrollTop = lista.scrollHeight;
+///Chat
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbotIcon = document.getElementById('chatbot-icon');
+    const chatbotChatbox = document.getElementById('chatbot-chatbox');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+
+    chatbotIcon.addEventListener('click', function() {
+        chatbotChatbox.style.display = 'flex';
+        displayMenu();
     });
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === "Enter") {
-      e.preventDefault(); // Evita o comportamento padrão do Enter (quebra de linha no textarea)
-        // Aqui você pode continuar com o restante do código para enviar a mensagem
-        document.getElementById("btFechar").click();
+
+    chatbotClose.addEventListener('click', function() {
+        chatbotChatbox.style.display = 'none';
+    });
+
+    chatbotSend.addEventListener('click', function() {
+        handleUserInput(chatbotInput.value.trim());
+    });
+
+    chatbotInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            chatbotSend.click();
+        }
+    });
+
+    function displayMenu() {
+        const menu = `
+            <div class="chatbot-message">
+                <strong>Chatbot:</strong> Olá, sou a Deli sua assistente virtual! Como posso ajudar? Selecione uma das opções abaixo para que possa te auxiliar:<br>
+                1. Tipos de chuveiro<br>
+                2. Melhor opção para casa<br>
+                3. Valores para comprar<br>
+                Digite o número da opção desejada.
+            </div>
+        `;
+        chatbotMessages.innerHTML = menu;
     }
-  });
+
+    function handleUserInput(userMessage) {
+        if (!userMessage) return;
+
+        addMessage('Você', userMessage);
+
+        switch (userMessage) {
+            case '1':
+                setTimeout(() => addMessage('Chatbot', 'Aqui estão alguns tipos de chuveiro: elétrico, a gás, solar e híbrido.'), 1000);
+                break;
+            case '2':
+                setTimeout(() => addMessage('Chatbot', 'A melhor opção para casa depende das suas necessidades. Para eficiência, um chuveiro elétrico pode ser ideal. Para economia a longo prazo, considere um chuveiro solar.'), 1000);
+                break;
+            case '3':
+                setTimeout(() => addMessage('Chatbot', 'Os preços variam bastante. Um chuveiro elétrico simples podem variar a partir de R$ 79,90 enquanto sistemas mais avançados, como solares, podem custar a partir de R$999,99.'), 1000);
+                break;
+            default:
+                setTimeout(() => addMessage('Chatbot', 'Opção inválida. Por favor, digite 1, 2 ou 3 para selecionar uma opção do menu.'), 1000);
+                break;
+        }
+
+        chatbotInput.value = '';
+    }
+
+    function addMessage(sender, message) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'chatbot-message';
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+});
   
   //Finalizar compra
   
