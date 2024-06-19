@@ -97,6 +97,7 @@ Email: J.k.eletricahidraulica@outlook.com
 
 Esta documentação fornece uma visão abrangente da J.K Elétrica e Hidráulica, seu objetivo, histórico, produtos e estrutura organizacional. Estamos comprometidos em continuar a oferecer produtos de alta qualidade que melhoram a funcionalidade e a estética dos banheiros de nossos clientes.
 
+Acompanhamos uma apresentação online, segue link do vídeo no Youtube: [Clique aqui](https://youtu.be/1q_ArITMXOk)
 
 ## Autores
 
